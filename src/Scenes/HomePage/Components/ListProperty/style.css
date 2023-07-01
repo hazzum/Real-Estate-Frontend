@@ -1,0 +1,77 @@
+.listProperty .listPropertyHeader{
+  text-align: center;
+  background-color: #00A9A4;
+  padding: 20px;
+  color:white;
+}
+
+.listProperty .listPropertyHeader h3{
+  margin:0;
+}
+
+.listProperty .listPropertyContent{
+  max-width: 1100px;
+  margin: 0 auto;
+  margin-top: 20px;
+  padding:30px 50px 20px 50px;
+}
+
+.grid {
+  display: grid;
+  grid-auto-rows: 1fr;
+  list-style: none;
+  padding: 0;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+
+/* If last row contains only one item, make it span both columns. */
+/* .grid > :global(:last-child:nth-child(odd)) {
+  grid-column: 1 / 3;
+} */
+
+@media (min-width: 50em) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  .grid > :global(*) {
+    flex-basis: 20rem;
+  }
+}
+
+.card {
+  display: grid;
+  grid-template: auto 1fr / auto 1fr;
+  height: 11rem;
+  background: var(--gradient-subtle);
+  border: 1px solid var(--gray-800);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  font-family: var(--font-brand);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  transition: box-shadow var(--theme-transition);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+@media (min-width: 50em) {
+  .card {
+    height: 22rem;
+    border-radius: 1.5rem;
+  }
+
+  .title {
+    border-radius: 0.9375rem;
+  }
+}
