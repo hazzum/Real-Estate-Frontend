@@ -5,7 +5,7 @@ interface SelectComponentProps {
   listItem: string[];
   switchTop?: boolean;
   name?: string;
-  onSelect: Function
+  onSelect: Function;
   selected: any;
 }
 
@@ -66,7 +66,7 @@ class SelectComponent extends React.Component<SelectComponentProps, SelectCompon
         <ul className={`dropdown-menu dropdown-select${this.props.switchTop ? ' switchTop' : ''}`}>
           {this.props.listItem.map((item, index) => {
             return (
-              <li key={index} onClick={e => { this.doSelect(index); this.props.onSelect(item) }}>
+              <li key={index} onClick={e => { this.doSelect(index); this.props.onSelect(item); }}>
                 <a>{item}</a>
               </li>
             );

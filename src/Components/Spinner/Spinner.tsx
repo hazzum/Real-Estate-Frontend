@@ -1,6 +1,5 @@
-import "./Spinner.css";
+import './Spinner.css';
 import * as React from 'react';
-
 
 export default class LoadingSpinner extends React.Component<{}, {}> {
   render() {
