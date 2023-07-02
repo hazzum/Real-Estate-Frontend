@@ -88,7 +88,7 @@ class MyhousePage extends React.Component<RouteComponentProps<{ id: string }>, L
           dateUpdated: new Date(res.updatedAt!),
           mlsId: res.mls_id,
           id: res.id,
-          tax: res.tax ? res.tax.toString() : 'No tax information available',
+          tax: res.tax ? currency(res.tax, { precision: 0 }).format() : 'No tax information available',
           homeOwnerFee: res.homeOwnerFee ? currency(res.homeOwnerFee, { precision: 0 }).format() : '$0',
           county: res.county || 'N/A',
           city: res.city || 'N/A',

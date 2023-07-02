@@ -30,7 +30,7 @@ class House extends React.Component<HouseProps, HouseState> {
         images.push({
           original: imgs[index],
           thumnail: ele,
-          thumbnailLoading: index==0?"eager":"lazy",
+          thumbnailLoading: index == 0 ? "eager" : "lazy",
           originalTitle: address,
           thumbnailTitle: address,
           originalAlt: address,
@@ -83,6 +83,7 @@ class House extends React.Component<HouseProps, HouseState> {
           </div>
           <h2>{this.props.data.address}, {this.props.data.area}</h2>
           <div className='Description'>
+            <p><span className="fa fa-globe" /> Directions:  <b>{this.props.data.direction}</b></p>
             <p><b>{this.props.data.remarks}</b></p>
           </div>
           <div className='infoCard'>
@@ -100,6 +101,7 @@ class House extends React.Component<HouseProps, HouseState> {
               <li><span className="fa fa-bed" /> Bedroom #5 Dim.:<span className="Tab"></span><b>{this.props.data.Bdroom5}</b></li>
               <li><span className="fa fa-life-ring" /> Pool:<span className="Tab"></span><b>{this.props.data.pool}</b></li>
               <li><span className="fa fa-ship" /> Waterfront:<span className="Tab"></span><b>{this.props.data.waterfront}</b></li>
+              <li><span className="fa fa-fire" /> Fireplace:<span className="Tab"></span><b>{this.props.data.fireplace}</b></li>
               <li><span className="fa fa-wifi" /> Internet:<span className="Tab"></span><b>{this.props.data.internet}</b></li>
             </ul>
             <ul>
@@ -109,13 +111,14 @@ class House extends React.Component<HouseProps, HouseState> {
               <li><span className="fa fa-phone" /> Owner Number:<span className="Tab"></span><b>{this.props.data.phone}</b></li>
               <li><span className="fa fa-money" /> Taxes:<span className="Tab"></span><b>{this.props.data.tax}</b></li>
               <li><span className="fa fa-money" /> Homeowner Fee:<span className="Tab"></span><b>{this.props.data.homeOwnerFee}</b></li>
-              <li><span className="fa fa-globe" /> Subdivision:<span className="Tab"></span><b>{this.props.data.subdivision}</b></li>
+              <li><span className="fa fa-globe" /> Area:<span className="Tab"></span><b>{this.props.data.area}</b></li>
+              <li><span className="fa fa-globe" /> County:<span className="Tab"></span><b>{this.props.data.county}</b></li>
+              <li><span className="fa fa-globe" /> City:<span className="Tab"></span><b>{this.props.data.city.charAt(0).toUpperCase() + this.props.data.city.slice(1).toLowerCase()}</b></li>
               <li><span className="fa fa-home" /> Dining Room Dim.:<span className="Tab"></span><b>{this.props.data.diningDim}</b></li>
               <li><span className="fa fa-home" /> Living Room Dim.:<span className="Tab"></span><b>{this.props.data.livingDim}</b></li>
               <li><span className="fa fa-home" /> Family Room Dim.:<span className="Tab"></span><b>{this.props.data.familyDim}</b></li>
               <li><span className="fa fa-home" /> Kitchen Dim.:<span className="Tab"></span><b>{this.props.data.kitchenDim}</b></li>
               <li><span className="fa fa-home" /> Warranty:<span className="Tab"></span><b>{this.props.data.warranty}</b></li>
-              <li><span className="fa fa-fire" /> Fireplace:<span className="Tab"></span><b>{this.props.data.fireplace}</b></li>
               <li><span className="fa fa-history" /> Year Built:<span className="Tab"></span><b>{this.props.data.yearBuilt}</b></li>
             </ul>
           </div>

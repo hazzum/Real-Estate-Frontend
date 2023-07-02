@@ -93,10 +93,10 @@ class SearchForm extends React.Component<SearchBarProps, SearchFormState> {
           listing.img = listing.imgs[0]
           listingsNew.push(listing)
         })
-        this.setState({ recordCount: res.count })
-        this.setState({ listings: listingsNew })
-        this.setState({ isLoaded: true })
       }
+      this.setState({ recordCount: res?res.count:0 })
+      this.setState({ listings: listingsNew })
+      this.setState({ isLoaded: true })
     })
   }
 

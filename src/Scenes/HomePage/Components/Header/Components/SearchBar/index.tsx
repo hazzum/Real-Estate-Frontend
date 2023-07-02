@@ -56,8 +56,10 @@ class SearchBar extends React.Component<SearchBarProps, SelectBarState> {
 
   handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
+    let inputValue = value;
+    if (name=='lowerPrice' || name=='upperPrice') {inputValue=parseInt(inputValue)>1000000000?'1000000000':inputValue;}
     const criteria: Partial<CriteriaState> = {}
-    criteria[name] = value;
+    criteria[name] = inputValue;
     this.props.changeState(criteria);
   }
 

@@ -35,10 +35,10 @@ class ListProperty extends React.Component<{}, ListComponentState> {
       isLoaded: false
     };
   }
-  
+
   componentDidMount(): void {
     let listingsNew: listing[] = []
-    getListings({pageNumber:1, listingStatus:'Active,Back on Market,Reduce Price,New,Increase Price,First Right of Refusal,Coming Soon', sortingBy:OrderBy['Newest']}).then(res => {
+    getListings({ pageNumber: 1, listingStatus: 'Active,Back on Market,Reduce Price,New,Increase Price,First Right of Refusal,Coming Soon', sortingBy: OrderBy['Newest'] }).then(res => {
       if (res) {
         res.rows.forEach((ele: Listing) => {
           const photoArr = ele.photosThumb!.split(',')
@@ -49,7 +49,7 @@ class ListProperty extends React.Component<{}, ListComponentState> {
             toilets: ele.bthrooms || 0,
             square: ele.sqft,
             img: '',
-            imgs:[],
+            imgs: [],
             price: currency(ele.price, { precision: 0 }).format(),
             status: ele.status,
             dateUpdated: new Date(ele.updatedAt!),
@@ -57,36 +57,39 @@ class ListProperty extends React.Component<{}, ListComponentState> {
             id: ele.id
           }
           listing.imgs = []
-          photoArr.forEach((ele)=>{listing.imgs!.push('https://cdnparap120.paragonrels.com/ParagonImages/Property/p12/TBRMLS' + ele)})
-          listing.img=listing.imgs[0]
+          photoArr.forEach((ele) => { listing.imgs!.push('https://cdnparap120.paragonrels.com/ParagonImages/Property/p12/TBRMLS' + ele) })
+          listing.img = listing.imgs[0]
           listingsNew.push(listing)
         })
-        this.setState({listings:listingsNew})
-        this.setState({isLoaded: true})
       }
+      this.setState({ listings: listingsNew })
+      this.setState({ isLoaded: true })
     })
   }
 
-
+  resultList = () => {
+    return (this.state.isLoaded ?
+      (this.state.listings.length ? (
+        <div className="listProperty">
+          <div className="row listPropertyHeader">
+            <h3>Recently Listed Properties</h3>
+            <h5>Find the most recent listings!</h5>
+          </div>
+          <div className="row listPropertyContent">
+            {
+              this.state.listings.map((data, index) => {
+                return (
+                  <div className="col-xs-12 col-sm-6 col-md-4 col-lg-3" key={index}>
+                    <SingelHouse data={data} />
+                  </div>
+                );
+              })
+            }
+          </div>
+        </div>) : (<h1>No Results Found</h1>)) : (<LoadingSpinner />));
+  }
   render() {
-    return (
-      this.state.isLoaded?
-      (<div className="listProperty">
-        <div className="row listPropertyHeader">
-          <h3>Recently Listed Properties</h3>
-          <h5>Find the most recent listings!</h5>
-        </div>
-        <div className="row listPropertyContent">
-          {this.state.listings.map((data, index) => {
-            return (
-              <div className="col-xs-12 col-sm-6 col-md-4 col-lg-3" key={index}>
-                <SingelHouse data={data} />
-              </div>
-            );
-          })}
-        </div>
-      </div>): (<LoadingSpinner></LoadingSpinner>)
-    );
+    return this.resultList();
   }
 }
 
