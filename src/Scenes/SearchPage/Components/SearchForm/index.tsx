@@ -93,14 +93,14 @@ class SearchForm extends React.Component<SearchBarProps, SearchFormState> {
           listing.img = listing.imgs[0]
           listingsNew.push(listing)
         })
+        this.setState({ recordCount: res.count })
+        this.setState({ listings: listingsNew })
+        this.setState({ isLoaded: true })
       }
-      this.setState({ recordCount: res.count })
-      this.setState({ listings: listingsNew })
-      this.setState({ isLoaded: true })
     })
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: SearchBarProps) {
     if (!_.isEqual(prevProps.payload, this.props.payload)) {
       this.componentDidMount();
     }
@@ -120,7 +120,7 @@ class SearchForm extends React.Component<SearchBarProps, SearchFormState> {
   }
 
   handlePageClick = (event) => {
-    this.props.changeState({ pageNumber: event.selected+1 })
+    this.props.changeState({ pageNumber: event.selected + 1 })
   }
 
   changeResultTab = (tab: 'list') => {
@@ -136,7 +136,7 @@ class SearchForm extends React.Component<SearchBarProps, SearchFormState> {
         this.state.listings.length ? (
           <div className="resultsList">
             <ReactPaginate
-              forcePage={this.props.payload.pageNumber!-1}
+              forcePage={this.props.payload.pageNumber! - 1}
               onPageChange={this.handlePageClick}
               pageCount={Math.ceil(this.state.recordCount / this.props.payload.pageSize!)}
               renderOnZeroPageCount={null}
@@ -162,6 +162,24 @@ class SearchForm extends React.Component<SearchBarProps, SearchFormState> {
                 );
               })}
             </div>
+            <ReactPaginate
+              forcePage={this.props.payload.pageNumber! - 1}
+              onPageChange={this.handlePageClick}
+              pageCount={Math.ceil(this.state.recordCount / this.props.payload.pageSize!)}
+              renderOnZeroPageCount={null}
+              marginPagesDisplayed={2}
+              pageRangeDisplayed={1}
+              breakLabel="..."
+              activeClassName={'page-item active'}
+              breakClassName={'page-item disabled'}
+              containerClassName={'pagination'}
+              disabledClassName={'page-item disabled'}
+              nextClassName={"page-item page-link"}
+              pageClassName={'page-item page-link'}
+              previousClassName={"page-item page-link"}
+              previousLabel={<i className="fa fa-arrow-left" aria-hidden="true"></i>}
+              nextLabel={<i className="fa fa-arrow-right" aria-hidden="true"></i>}
+            />
           </div>
         ) : (<h1>No Results Found</h1>)
       ) : (<LoadingSpinner />)

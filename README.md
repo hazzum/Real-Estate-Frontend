@@ -1,8 +1,9 @@
 This project was bootstrapped with [Create React App Typescript]
 
-Owner: huykhanh.cse@gmail.com
+Owner: [Hazem Mousa](https://www.linkedin.com/in/hazem-m-423434159/)
+Demo: https://sam-realtors.vercel.app/
 
-Demo: https://kangel7-2.000webhostapp.com/
+Built using [a template made by Khánh](https://github.com/KAngel7/clone-reales-real-estate)
 
 ## Usage
 

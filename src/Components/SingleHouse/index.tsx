@@ -2,6 +2,14 @@ import * as React from 'react';
 import './style.css';
 import { Link } from 'react-router-dom';
 
+import "react";
+
+declare module "react" {
+  interface ImgHTMLAttributes<T> extends HTMLAttributes<T> {
+    loading?: "auto" | "eager" | "lazy";
+  }
+}
+
 interface SingleHouseProps {
   data: any;
 }
@@ -12,7 +20,7 @@ class SingleHouse extends React.Component<SingleHouseProps, {}> {
       <div className="singleHouse">
         <Link to={`/property/${this.props.data.id}`} className="card">
           <div className="figure">
-            <img src={this.props.data.img} alt="image" />
+            <img src={this.props.data.img} alt="image" loading="lazy" />
             <div className="figCaption">
               <div style={{fontSize: '18px'}}>{this.props.data.price}</div>
             </div>

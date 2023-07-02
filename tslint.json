@@ -1,3 +1,57 @@
 {
-    "rules":{}
+    "extends": [],
+    "rules": {
+        "ban": false,
+        "class-name": false,
+        "comment-format": [
+            true,
+            "check-space"
+        ],
+        "curly": true,
+        "eofline": false,
+        "forin": true,
+        "interface-name": [
+            true,
+            "never-prefix"
+        ],
+        "jsdoc-format": true,
+        "jsx-no-lambda": false,
+        "jsx-no-multiline-js": false,
+        "label-position": true,
+        "no-any": false,
+        "no-arg": true,
+        "no-bitwise": true,
+        "no-console": [
+            false,
+            "log",
+            "error",
+            "debug",
+            "info",
+            "time",
+            "timeEnd",
+            "trace"
+        ],
+        "no-construct": false,
+        "no-debugger": false,
+        "no-duplicate-variable": false,
+        "no-empty": false,
+        "no-eval": false,
+        "no-shadowed-variable": false,
+        "no-string-literal": false,
+        "no-switch-case-fall-through": false,
+        "no-trailing-whitespace": false,
+        "no-unused-variable": false,
+        "no-unused-expression": false,
+        "no-use-before-declare": false,
+        "radix": false,
+        "switch-default": false,
+        "trailing-comma": [
+            false
+        ],
+        "typedef": [
+            true,
+            "parameter",
+            "property-declaration"
+        ]
+    }
 }

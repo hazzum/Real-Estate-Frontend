@@ -2,31 +2,71 @@ import * as React from 'react';
 import './style.css';
 import ImageGallery from 'react-image-gallery';
 import { listing } from '..';
+import LoadingSpinner from 'Components/Spinner/Spinner';
+
 
 interface HouseProps {
   data: listing;
 }
 
-class House extends React.Component<HouseProps, {}> {
+interface HouseState {
+  isLoaded: boolean;
+}
 
-  renderImages = () =>{
-    let images: Array<{original: string, thumnail:string}> = []
-    const {imgs, imgsthumb} = this.props.data;
-    console.log('hiii');
-    
-    if(imgsthumb.length>1 && imgs) {
-      console.log('entered llopp 2');
-      imgsthumb.forEach((ele, index)=>{
-        images.push({original:imgs[index], thumnail:ele})
+class House extends React.Component<HouseProps, HouseState> {
+
+  constructor(props: HouseProps) {
+    super(props);
+    this.state = {
+      isLoaded: false
+    };
+  }
+
+  renderImages = () => {
+    let images: Array<ImageGallery.items> = []
+    const { imgs, imgsthumb, address } = this.props.data;
+    if (imgsthumb.length > 1 && imgs) {
+      imgsthumb.forEach((ele, index) => {
+        images.push({
+          original: imgs[index],
+          thumnail: ele,
+          thumbnailLoading: index==0?"eager":"lazy",
+          originalTitle: address,
+          thumbnailTitle: address,
+          originalAlt: address,
+          thumbnailAlt: address
+        })
       })
-      return (<ImageGallery infinite={false} lazyLoad={true} items={images} />);
- 
+      return (
+        <>
+          <div style={{ display: this.state.isLoaded ? "none" : "block" }}>
+            <LoadingSpinner></LoadingSpinner>
+          </div>
+          <div style={{ display: this.state.isLoaded ? "block" : "none" }}>
+            <ImageGallery
+              onImageLoad={() => this.setState({ isLoaded: true })}
+              onErrorImageURL="/No_Image_Available.jpg"
+              infinite={false}
+              lazyLoad={true}
+              items={images}
+            />
+          </div>
+        </>
+      );
     }
-    else if (imgsthumb.length==1) {
-      console.log('entered llopp 1');
-      return (<img src={this.props.data.imgThumb} alt="image" />)
+    else if (imgsthumb.length == 1) {
+      return (
+        <>
+          <div style={{ display: this.state.isLoaded ? "none" : "block" }}>
+            <LoadingSpinner></LoadingSpinner>
+          </div>
+          <div style={{ display: this.state.isLoaded ? "block" : "none" }}>
+            <img src={this.props.data.imgThumb} alt={this.props.data.address} onLoad={() => this.setState({ isLoaded: true })} />
+          </div>
+        </>
+      )
     }
-    else {console.log('entered llopp 3');return (<img src="/bg-1.jpg" alt="image" />)}
+    else { return (<img src="/No_Image_Available.jpg" alt="Not available" />) }
   }
 
   render() {

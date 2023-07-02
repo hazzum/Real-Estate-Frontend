@@ -9,12 +9,12 @@ import { RootState } from 'Redux/Store';
 import { authenticate } from 'Redux/Modules/User';
 import HomePage from 'Scenes/HomePage';
 import WalletPage from 'Scenes/WalletPage';
-import PageInfo from 'Scenes/MyInfoPage';
+// import PageInfo from 'Scenes/MyInfoPage';
 import SearchPage from 'Scenes/SearchPage';
 import MyhousePage from 'Scenes/MyhousePage';
-import NewPropertyPage from 'Scenes/NewPropertyPage';
-import AgentPage from 'Scenes/AgentPage';
-import AdvicePage from 'Scenes/AdvicePage';
+// import NewPropertyPage from 'Scenes/NewPropertyPage';
+// import AgentPage from 'Scenes/AgentPage';
+// import AdvicePage from 'Scenes/AdvicePage';
 import NewsPage from 'Scenes/NewsPage';
 
 const mapStateToProps = (state: RootState) => ({

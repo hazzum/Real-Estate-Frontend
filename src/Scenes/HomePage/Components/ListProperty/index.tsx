@@ -39,7 +39,7 @@ class ListProperty extends React.Component<{}, ListComponentState> {
   componentDidMount(): void {
     let listingsNew: listing[] = []
     getListings({pageNumber:1, listingStatus:'Active,Back on Market,Reduce Price,New,Increase Price,First Right of Refusal,Coming Soon', sortingBy:OrderBy['Newest']}).then(res => {
-      if (res.count) {
+      if (res) {
         res.rows.forEach((ele: Listing) => {
           const photoArr = ele.photosThumb!.split(',')
           const listing: listing = {
@@ -61,9 +61,9 @@ class ListProperty extends React.Component<{}, ListComponentState> {
           listing.img=listing.imgs[0]
           listingsNew.push(listing)
         })
+        this.setState({listings:listingsNew})
+        this.setState({isLoaded: true})
       }
-      this.setState({listings:listingsNew})
-      this.setState({isLoaded: true})
     })
   }
 
