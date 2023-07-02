@@ -29,8 +29,9 @@ class House extends React.Component<HouseProps, HouseState> {
       imgsthumb.forEach((ele, index) => {
         images.push({
           original: imgs[index],
-          thumnail: ele,
-          thumbnailLoading: index == 0 ? "eager" : "lazy",
+          thumbnail: ele,
+          thumbnailLoading: "eager",
+          loading: index == 0 ? "eager" : "lazy",
           originalTitle: address,
           thumbnailTitle: address,
           originalAlt: address,
@@ -46,9 +47,11 @@ class House extends React.Component<HouseProps, HouseState> {
             <ImageGallery
               onImageLoad={() => this.setState({ isLoaded: true })}
               onErrorImageURL="/No_Image_Available.jpg"
-              infinite={false}
               lazyLoad={true}
               items={images}
+              showPlayButton={false}
+              showIndex={true}
+              thumbnailPosition={window.innerWidth<767?'bottom':'right'}
             />
           </div>
         </>

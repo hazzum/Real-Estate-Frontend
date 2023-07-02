@@ -10,7 +10,7 @@ a.newCard, div.newCard {
   justify-content: center;
   text-align: left;
   flex-direction: column;
-  height: 80%;
+  height: 95%;
   background-color: #fff;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.13);
   margin-bottom: 20px;
@@ -59,7 +59,7 @@ a.newCard, div.newCard {
 
 .newFigure {
   background-color: #000;
-  width: 80%;
+  width: 90%;
   overflow: hidden;
   position: relative;
   z-index: 1;
@@ -69,7 +69,7 @@ a.newCard, div.newCard {
 @media screen and (max-width: 767px) {
   .newFigure {
     border-radius:10px;
-    width:90%;
+    width:100%;
   }
   .infoCard {
     flex-direction: column;
