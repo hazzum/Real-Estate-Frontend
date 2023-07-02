@@ -1,7 +1,7 @@
 export interface Listing {
   id: number
   mls_id: number
-  mls_update_date: Date
+  mls_update_date: string
   status: string
   price: number
   sqft: number
@@ -36,6 +36,6 @@ export interface Listing {
   warranty?: boolean
   internet?: boolean
   remarks?: string
-  createdAt?: Date
-  updatedAt?: Date
+  createdAt?: string
+  updatedAt?: string
 }

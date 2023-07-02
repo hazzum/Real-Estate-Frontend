@@ -46,10 +46,10 @@ class App extends React.Component<AppProps, {}> {
           <Route exact={true} path="/wallet/:action?" component={WalletPage} />
           <Route exact={true} path="/search/:action?" component={SearchPage} />
           <Route exact={true} path="/property/:id?" component={MyhousePage} />
-          <Route exact={true} path="/newproperty/:action" component={NewPropertyPage} />
+          {/* <Route exact={true} path="/newproperty/:action" component={NewPropertyPage} />
           <Route exact={true} path="/myprofile" component={PageInfo} />
           <Route exact={true} path="/advice/:type" component={AdvicePage} />
-          <Route exact={true} path="/agent/:action" component={AgentPage} />
+          <Route exact={true} path="/agent/:action" component={AgentPage} /> */}
           <Route exact={true} path="/projects" component={NewsPage} />
         </div>
       </Router>

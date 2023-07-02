@@ -4,7 +4,8 @@ import SingelHouse from 'Components/SingleHouse';
 import { getListings } from 'Services/Api/Listing/Listing';
 import { Listing } from 'Models/Listing';
 import * as currency from 'currency.js'
-import ReactLoading from 'react-loading';
+import { OrderBy } from 'Redux/Modules/Criteria';
+import LoadingSpinner from 'Components/Spinner/Spinner';
 
 interface listing {
   name: string
@@ -15,6 +16,10 @@ interface listing {
   img: string
   imgs?: string[]
   price: string
+  status: string
+  dateUpdated: Date
+  mlsId: number
+  id: number
 }
 
 interface ListComponentState {
@@ -33,7 +38,7 @@ class ListProperty extends React.Component<{}, ListComponentState> {
   
   componentDidMount(): void {
     let listingsNew: listing[] = []
-    getListings({pageNumber:2}).then(res => {
+    getListings({pageNumber:1, listingStatus:'Active,Back on Market,Reduce Price,New,Increase Price,First Right of Refusal,Coming Soon', sortingBy:OrderBy['Newest']}).then(res => {
       if (res.count) {
         res.rows.forEach((ele: Listing) => {
           const photoArr = ele.photosThumb!.split(',')
@@ -45,7 +50,11 @@ class ListProperty extends React.Component<{}, ListComponentState> {
             square: ele.sqft,
             img: '',
             imgs:[],
-            price: currency(ele.price).format()
+            price: currency(ele.price, { precision: 0 }).format(),
+            status: ele.status,
+            dateUpdated: new Date(ele.updatedAt!),
+            mlsId: ele.mls_id,
+            id: ele.id
           }
           listing.imgs = []
           photoArr.forEach((ele)=>{listing.imgs!.push('https://cdnparap120.paragonrels.com/ParagonImages/Property/p12/TBRMLS' + ele)})
@@ -70,13 +79,13 @@ class ListProperty extends React.Component<{}, ListComponentState> {
         <div className="row listPropertyContent">
           {this.state.listings.map((data, index) => {
             return (
-              <div className="col-xs-6 col-sm-6 col-md-4 col-lg-3" key={index}>
+              <div className="col-xs-12 col-sm-6 col-md-4 col-lg-3" key={index}>
                 <SingelHouse data={data} />
               </div>
             );
           })}
         </div>
-      </div>): (<ReactLoading type='spokes' height={667} width={375} />)
+      </div>): (<LoadingSpinner></LoadingSpinner>)
     );
   }
 }

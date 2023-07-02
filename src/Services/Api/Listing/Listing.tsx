@@ -21,22 +21,22 @@ export async function getListings(criteria: CriteriaState) {
   if (criteria.waterfront) {crit.push(`waterfront=${criteria.waterfront}`)}
   if (criteria.keyword) {crit.push(`keyword=${criteria.keyword}`)}
   if (criteria.sortingBy) {crit.push(`sortBy=${criteria.sortingBy}`)}
-  if (criteria.direction) {crit.push(`orderDir=${criteria.direction}`)}
+  if (criteria.direction) {crit.push(`sortDir=${criteria.direction}`)}
   const link = ('https://real-estate-api-production-d74b.up.railway.app/api/listings?')+((crit)?crit.join('&'):'')
-  console.log(link);
-  
-  const result = await axios.get(link);
-  if (result && result.data && result.data.count) {
+  try {
+    const result = await axios.get(link);
     return result.data;
+  } catch (error) {
+    return null;
   }
-  return null;
 } 
 
 export async function getSingleListing(id: number) {
   const link = `https://real-estate-api-production-d74b.up.railway.app/api/listings/${id}`
-  const result = await axios.get(link);
-  if (result && result.data && result.data.count) {
+  try {
+    const result = await axios.get(link);
     return result.data;
+  } catch (error) {
+    return null;
   }
-  return null;
 } 

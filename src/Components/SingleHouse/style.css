@@ -1,8 +1,9 @@
 .singleHouse {
-  overflow: hidden;
+  overflow: visible;
 }
 a.card, div.card {
   display: block;
+  height: 400px;
   background-color: #fff;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.13);
   margin-bottom: 20px;
@@ -13,6 +14,7 @@ a.card, div.card {
 .figure {
   background-color: #000;
   width: 100%;
+  height: 60%;
   overflow: hidden;
   position: relative;
   z-index: 1;
@@ -22,6 +24,7 @@ a.card, div.card {
   position: relative;
   display: block;
   width: 100%;
+  height: 150%;
   opacity: 1;
 }
 
@@ -132,10 +135,12 @@ a.card:hover .figure .figCaption > span:nth-child(2), div.card:hover .figure .fi
 }
 
 .figType {
-  background-color: #eab134;
-  font-size: 10px;
-  line-height: 11px;
-  color: #fff;
+  background-color: #228B22;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 550;
+  font-family: Helvetica;
+  color: #FFF;
   padding: 2px 4px;
   border-radius: 2px;
   position: absolute;
@@ -175,8 +180,8 @@ a.card:hover h2, div.card:hover h2 {
 }
 
 a.card .cardAddress, div.card .cardAddress {
-  font-size: 11px;
-  line-height: 13px;
+  font-size: 13px;
+  line-height: 15px;
   color: #999;
   padding: 0 0 10px 10px;
   margin: 0 10px 0 0;
@@ -185,8 +190,8 @@ a.card .cardAddress, div.card .cardAddress {
 }
 
 a.card .cardAddress span, div.card .cardAddress span {
-  font-size: 13px;
-  line-height: 13px;
+  font-size: 15px;
+  line-height: 15px;
 }
 
 a.card ul.cardFeat, div.card ul.cardFeat {

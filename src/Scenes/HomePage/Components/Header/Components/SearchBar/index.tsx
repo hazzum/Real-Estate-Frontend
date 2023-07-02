@@ -5,7 +5,8 @@ import SelectComponent from 'Components/SelectComponent';
 import { Link } from 'react-router-dom';
 import { connect, Dispatch } from 'react-redux';
 import { getTranslation, SupportedLanguage } from 'Services/Geo';
-import { changeState, CriteriaState, reverseAreaCode } from 'Redux/Modules/Criteria';
+import { AreaCode, changeState, CriteriaState } from 'Redux/Modules/Criteria';
+import { mixed } from 'Models/Unknown';
 
 const mapStateToProps = (state: any) => ({
   lang: state.status.lang,
@@ -55,21 +56,36 @@ class SearchBar extends React.Component<SearchBarProps, SelectBarState> {
 
   handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
-    const criteria : Partial<CriteriaState> = {}
+    const criteria: Partial<CriteriaState> = {}
     criteria[name] = value;
     this.props.changeState(criteria);
   }
 
   handleArea = (areaValue: string) => {
-    this.props.changeState({ area: areaValue });
+    if (areaValue == 'Area') {
+      this.props.changeState({ area: '' });
+    }
+    else {
+      this.props.changeState({ area: AreaCode[areaValue] });
+    }
   }
 
-  handleBdrooms = (bdrValue: number) => {
-    this.props.changeState({ lowerBdrooms: bdrValue });
+  handleBdrooms = (bdrValue: string) => {
+    if (Number.isNaN(parseInt(bdrValue))) {
+      this.props.changeState({ lowerBdrooms: 0 });
+    }
+    else {
+      this.props.changeState({ lowerBdrooms: parseInt(bdrValue) });
+    }
   }
 
-  handleBthrooms = (bthValue: number) => {
-    this.props.changeState({ lowerBthrooms: bthValue });
+  handleBthrooms = (bthValue: string) => {
+    if (Number.isNaN(parseInt(bthValue))) {
+      this.props.changeState({ lowerBthrooms: 0 });
+    }
+    else {
+      this.props.changeState({ lowerBthrooms: parseInt(bthValue) });
+    }
   }
 
   toggleAdvSearch = () => {
@@ -101,29 +117,7 @@ class SearchBar extends React.Component<SearchBarProps, SelectBarState> {
 
     const listAreas = [
       getTranslation(this.props.lang, 'Area'),
-      'Northeast Tallahasse',
-      'Northwest Tallahasse',
-      'Southeast Tallahasse',
-      'Southwest Tallahasse',
-      'Gadsden',
-      'Jackson',
-      'Jefferson',
-      'Franklin',
-      'Liberty',
-      'Madison',
-      'Taylor',
-      'Wakulla 1',
-      'Wakulla 2',
-      'Wakulla 3',
-      'Wakulla 4',
-      'Wakulla 5',
-      'Wakulla 6',
-      'Wakulla 7',
-      'Wakulla 8',
-      'Wakulla 9',
-      'Wakulla Old',
-      'Other',
-      'Other Ga'
+      ...Object.keys(AreaCode)
     ];
     return (
       <div className="search-panel">
@@ -133,22 +127,26 @@ class SearchBar extends React.Component<SearchBarProps, SelectBarState> {
               type="text"
               className="form-control"
               id="keyword"
-              name="keyword" onChange={this.handleChange}  value={this.props.payload.keyword}
+              name="keyword" onChange={this.handleChange} value={this.props.payload.keyword}
               placeholder={getTranslation(this.props.lang, 'Search for a keyword (pool, fireplace, internet...etc)')}
             />
           </div>
           <div className={`form-group${this.state.isAdvance ? ' adv' : ' hidden-xs'}`}>
-            <SelectComponent name="area" selected={undefined} onSelect={this.handleArea} switchTop={true} listItem={listAreas}>
+            <SelectComponent
+              selected={Object.keys(AreaCode)[Object.values(AreaCode).indexOf(this.props.payload.area as mixed as AreaCode)]}
+              onSelect={this.handleArea}
+              switchTop={true}
+              listItem={listAreas}>
               {getTranslation(this.props.lang, 'Area')}
             </SelectComponent>
           </div>
           <div className={`form-group${this.state.isAdvance ? ' adv' : ' hidden-xs'}`}>
-            <SelectComponent name="bdrooms" selected={this.props.payload.lowerBdrooms} onSelect={this.handleBdrooms} switchTop={true} listItem={listBed}>
+            <SelectComponent selected={this.props.payload.lowerBdrooms} onSelect={this.handleBdrooms} switchTop={true} listItem={listBed}>
               {getTranslation(this.props.lang, 'Bedrooms')}
             </SelectComponent>
           </div>
           <div className={`form-group${this.state.isAdvance ? ' adv' : ' hidden-xs'}`}>
-            <SelectComponent name="bthrooms" selected={this.props.payload.lowerBthrooms} onSelect={this.handleBthrooms} switchTop={true} listItem={listBath}>
+            <SelectComponent selected={this.props.payload.lowerBthrooms} onSelect={this.handleBthrooms} switchTop={true} listItem={listBath}>
               {getTranslation(this.props.lang, 'Bathrooms')}
             </SelectComponent>
           </div>

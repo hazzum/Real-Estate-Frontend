@@ -1,0 +1,273 @@
+@import "~react-image-gallery/styles/css/image-gallery.css";
+
+.House {
+  overflow: visible;
+  
+}
+a.newCard, div.newCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  flex-direction: column;
+  height: 80%;
+  background-color: #fff;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.13);
+  margin-bottom: 20px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.infoCard {
+  display: flex;
+  align-items: left;
+  justify-content: center;
+  text-align: left;
+  flex-direction: row;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.13);
+  margin-bottom: 20px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.Tab {
+  display: inline-block;
+  margin-left: 1.5em;
+}
+
+.infoCard > ul {
+  margin: 0 10px 0 10px;
+  padding: auto;
+  border: 4px solid #111;
+  border-radius: 10px;
+  width: 50%;
+}
+
+.Description {
+  padding: 10px 3px 10px 3px;
+  margin: 0 10px 0 10px;
+  width: 97%;
+  font-size: 15px;
+}
+
+.infoCard > ul > li {
+  margin-left: -30px;
+}
+
+.newFigure {
+  background-color: #000;
+  width: 80%;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  border-radius:15px;
+}
+
+@media screen and (max-width: 767px) {
+  .newFigure {
+    border-radius:10px;
+    width:90%;
+  }
+  .infoCard {
+    flex-direction: column;
+  }
+
+  .infoCard > ul {
+    padding: auto;
+    width: 100%;
+    border:none;
+  }
+}
+
+.newFigure img {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+}
+
+.newFigure img {
+  transition: transform 0.35s;
+  transform: scale(1.15);
+}
+
+a.newCard:hover img, div.newCard:hover img {
+  transform: scale(1);
+  opacity: 0.8;
+}
+
+.Caption {
+  position: absolute;
+  z-index: 2;
+  top: auto;
+  bottom: 0;
+  padding: 10px;
+  width: 100%;
+  color: #fff;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#80000000', GradientType=0);
+}
+
+.Caption {
+  transition: transform 0.35s;
+  transform: translate3d(0, 100%, 0);
+}
+
+.View {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  opacity: 0;
+  color: #fff;
+  font-size: 40px;
+  line-height: 40px;
+  margin-left: -21px;
+  margin-top: -20px;
+  font-weight: normal;
+  transition: opacity 0.35s, transform 0.35s;
+  transform: scale(3.0);
+}
+
+a.newCard:hover .View, div.newCard:hover .View {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.Caption div {
+  float: left;
+  font-size: 12px;
+  line-height: 12px;
+  font-weight: normal;
+}
+
+.carousel-col .Caption div {
+  float: left;
+  font-size: 13px;
+  line-height: 14px;
+  font-weight: bold;
+}
+
+.Caption > span {
+  float: right;
+  font-size: 11px;
+  line-height: 12px;
+  font-weight: normal;
+  margin-left: 5px;
+}
+
+.carousel-col .Caption > span {
+  display: none;
+}
+
+.Caption > span::before {
+  color: rgba(255, 255, 255, 0.70);
+}
+
+.Caption div, .Caption > span {
+  transition: transform 0.35s;
+  transform: translate3d(0, 200%, 0);
+}
+
+.Caption div {
+  display: inline-block;
+}
+
+a.newCard:hover .newFigure .Caption, a.newCard:hover .newFigure .Caption div, a.newCard:hover .newFigure .Caption > span, div.newCard:hover .newFigure .Caption, div.newCard:hover .newFigure .Caption div, div.newCard:hover .newFigure .Caption > span {
+  transform: translate3d(0, 0, 0);
+}
+
+a.newCard:hover .newFigure .Caption div, div.newCard:hover .newFigure .Caption div {
+  transition-delay: 0.05s;
+}
+
+a.newCard:hover .newFigure .Caption > span:nth-child(4), div.newCard:hover .newFigure .Caption > span:nth-child(4) {
+  transition-delay: 0.1s;
+}
+
+a.newCard:hover .newFigure .Caption > span:nth-child(3), div.newCard:hover .newFigure .Caption > span:nth-child(3) {
+  transition-delay: 0.15s;
+}
+
+a.newCard:hover .newFigure .Caption > span:nth-child(2), div.newCard:hover .newFigure .Caption > span:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.status {
+  background-color: #228B22;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 550;
+  font-family: Helvetica;
+  color: #FFF;
+  padding: 2px 4px;
+  border-radius: 2px;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  text-transform: uppercase;
+  z-index: 3;
+}
+
+.carousel-col .status {
+  top: auto;
+  left: auto;
+  right: 10px;
+  bottom: 10px;
+}
+
+a.newCard h2, div.newCard h2 {
+  font-weight: bolder;
+  font-size: 18px;
+  line-height: 22px;
+  margin: 10px 10px 10px 10px;
+  padding: 10px 0 3px 10px;
+  color: #333;
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  float: none;
+}
+
+a.newCard:hover, div.newCard:hover {
+  text-decoration: none;
+}
+
+a.newCard:hover h2, div.newCard:hover h2 {
+  color: #0eaaa6;
+  text-decoration: none;
+}
+
+a.newCard .newAddress, div.newCard .newAddress {
+  font-size: 13px;
+  line-height: 15px;
+  color: #999;
+  padding: 0 0 10px 10px;
+  margin: 0 10px 0 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+a.newCard .newAddress span, div.newCard .newAddress span {
+  font-size: 20px;
+  line-height: 15px;
+}
+
+a.newCard ul.newCardFeat, div.newCard ul.newCardFeat {
+  list-style-type: none;
+  margin: 0;
+  padding: 0 10px 10px 10px;
+}
+a.newCard ul.newCardFeat li, div.newCard ul.newCardFeat li {
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 11px;
+  line-height: 11px;
+  color: #333;
+}
+a.newCard ul.newCardFeat li span, div.newCard ul.newCardFeat li span {
+  color: #999;
+}

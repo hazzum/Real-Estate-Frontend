@@ -3,7 +3,7 @@ import './style.css';
 import { Icon } from 'react-fa';
 import SelectComponent from 'Components/SelectComponent';
 import CheckBox from 'Components/CheckBox';
-import InputMap from '../../../../Components/InputMap';
+// import InputMap from '../../../../Components/InputMap';
 import RadioButton from '../RadioButton';
 
 class AddNewPropertyForm extends React.Component<{}, {}> {
@@ -33,12 +33,12 @@ class AddNewPropertyForm extends React.Component<{}, {}> {
             <textarea className="description form-control" />
           </div>
         </div>
-        <div className="row form-group">
+        {/* <div className="row form-group">
           <div className="address col-xs-12 col-sm-12 col-md-12">
             <h4>Address</h4>
             <InputMap />
           </div>
-        </div>
+        </div> */}
         <div className="row form-group">
           <div className="bedrooms col-xs-12 col-sm-6 col-md-3">
             <h4>Bedrooms</h4>
