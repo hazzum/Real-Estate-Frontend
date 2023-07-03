@@ -94,7 +94,7 @@ interface CriteriaAction {
 export const initCriteriaState: CriteriaState = {
   pageSize: 20,
   pageNumber: 1,
-  listingStatus: 'Active,Back on Market,Reduce Price,New,Increase Price,First Right of Refusal,Coming Soon',
+  listingStatus: 'Active,Back on Market,Contingent,Reduce Price,New,Increase Price,First Right of Refusal,Coming Soon',
   lowerPrice:0,
   upperPrice:10000000,
   lowerBdrooms:1,
@@ -104,7 +104,7 @@ export const initCriteriaState: CriteriaState = {
   waterfront: false,
   internet: false,
   keyword: '',
-  sortingBy: OrderBy['last Updated'],
+  sortingBy: OrderBy['Newest'],
   direction: OrderDir.orderDesc,
 };
 

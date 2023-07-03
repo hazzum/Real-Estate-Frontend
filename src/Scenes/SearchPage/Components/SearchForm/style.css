@@ -44,14 +44,14 @@
 
 .volume input.form-control, .volume input.form-control[readonly] {
   width: 40%;
+  height: 30px;
   text-align: center;
-  border-radius: 0;
+  border-radius: 8px;
   box-shadow: none;
-  border: 0 none;
   border-top: 1px solid #dfdfdf;
   border-bottom: 1px solid #dfdfdf;
-  border-left: 0 none;
-  border-right: 0 none;
+  border-left: 1px solid #dfdfdf;
+  border-right: 1px solid #dfdfdf;
   -webkit-appearance: none;
   background-color: #fff;
   color: #333;

@@ -13,6 +13,7 @@ import { connect } from 'react-redux';
 import * as _ from "lodash";
 import ReactPaginate from 'react-paginate';
 import { Link } from 'react-router-dom';
+import Switch from 'Components/Switch/Switch';
 
 const mapStateToProps = (state: any) => ({
   payload: state.criteria
@@ -44,6 +45,7 @@ interface SearchFormState {
   recordCount: number;
   resultTab: 'list';
   isLoaded: boolean;
+  showSold: boolean;
 }
 
 interface SearchBarProps {
@@ -58,19 +60,15 @@ class SearchForm extends React.Component<SearchBarProps, SearchFormState> {
       resultTab: 'list',
       listings: [],
       isLoaded: false,
-      recordCount: 0
+      recordCount: 0,
+      showSold: false
     };
   }
 
   componentDidMount(): void {
     this.setState({ isLoaded: false })
     let listingsNew: listing[] = []
-    getListings({
-      pageNumber: 1,
-      listingStatus: 'Active,Back on Market,Reduce Price,New,Increase Price,First Right of Refusal,Coming Soon',
-      sortingBy: OrderBy['Newest'],
-      ...this.props.payload
-    }).then(res => {
+    getListings({...this.props.payload}).then(res => {
       if (res) {
         res.rows.forEach((ele: Listing) => {
           const photoArr = ele.photosThumb!.split(',')
@@ -94,7 +92,7 @@ class SearchForm extends React.Component<SearchBarProps, SearchFormState> {
           listingsNew.push(listing)
         })
       }
-      this.setState({ recordCount: res?res.count:0 })
+      this.setState({ recordCount: res ? res.count : 0 })
       this.setState({ listings: listingsNew })
       this.setState({ isLoaded: true })
     })
@@ -102,12 +100,39 @@ class SearchForm extends React.Component<SearchBarProps, SearchFormState> {
 
   componentDidUpdate(prevProps: SearchBarProps) {
     if (!_.isEqual(prevProps.payload, this.props.payload)) {
+      if(prevProps.payload.pageNumber==this.props.payload.pageNumber) {
+        this.props.changeState({pageNumber:1})
+      }
       this.componentDidMount();
     }
   }
 
   handleSortBy = (sortByValue: string) => {
     this.props.changeState({ sortingBy: OrderBy[sortByValue] });
+  }
+
+  handleShowSold = () => {
+    this.props.changeState({
+      listingStatus: this.state.showSold ?
+        'Active,Back on Market,Contingent,Reduce Price,New,Increase Price,First Right of Refusal,Coming Soon' : ''
+    });
+    this.setState({ showSold: !this.state.showSold })
+  }
+
+  handlePool = () => {
+    this.props.changeState({ pool: !this.props.payload.pool });
+  }
+
+  handleWater = () => {
+    this.props.changeState({ waterfront: !this.props.payload.waterfront });
+  }
+
+  handleFire = () => {
+    this.props.changeState({ fireplace: !this.props.payload.fireplace });
+  }
+
+  handleInternet = () => {
+    this.props.changeState({ internet: !this.props.payload.internet });
   }
 
   handleSortDir = (sortDir: OrderDir) => {
@@ -232,6 +257,56 @@ class SearchForm extends React.Component<SearchBarProps, SearchFormState> {
                   selected={this.props.payload.pageSize}
                   onSelect={this.handlePageSize}
                   listItem={Array.from({ length: 31 }, (value, index) => (index + 10).toString())} />
+              </div>
+            </div>
+          </div>
+          <div className="row form-group">
+            <div className="col-xs-6 col-sm-6 col-md-4 col-lg-4 formItem">
+              <div className="formField">
+                <label><b>Listings Found</b></label>
+                <div className="volume">
+                  <input type="text" className="form-control" readOnly={true} value={this.state.recordCount} />
+                </div>
+              </div>
+            </div>
+            <div className="col-xs-6 col-sm-6 col-md-4 col-lg-4 formItem">
+              <div className="formField">
+                <label><b>Show sold/unavailable?</b></label>
+                <div className="volume">
+                  <Switch id="ss" isOn={this.state.showSold} handleToggle={this.handleShowSold}></Switch>
+                </div>
+              </div>
+            </div>
+            <div className="col-xs-6 col-sm-6 col-md-4 col-lg-4 formItem">
+              <div className="formField">
+                <label><b>Fireplace?</b></label>
+                <div className="volume">
+                  <Switch id="ff" isOn={this.props.payload.fireplace ? true : false} handleToggle={this.handleFire}></Switch>
+                </div>
+              </div>
+            </div>
+            <div className="col-xs-6 col-sm-6 col-md-4 col-lg-4 formItem">
+              <div className="formField">
+                <label><b>Pool?</b></label>
+                <div className="volume">
+                  <Switch id="pp" isOn={this.props.payload.pool ? true : false} handleToggle={this.handlePool}></Switch>
+                </div>
+              </div>
+            </div>
+            <div className="col-xs-6 col-sm-6 col-md-4 col-lg-4 formItem">
+              <div className="formField">
+                <label><b>Waterfront?</b></label>
+                <div className="volume">
+                  <Switch id="ww" isOn={this.props.payload.waterfront ? true : false} handleToggle={this.handleWater}></Switch>
+                </div>
+              </div>
+            </div>
+            <div className="col-xs-6 col-sm-6 col-md-4 col-lg-4 formItem">
+              <div className="formField">
+                <label><b>Internet?</b></label>
+                <div className="volume">
+                  <Switch id="iii" isOn={this.props.payload.internet ? true : false} handleToggle={this.handleInternet}></Switch>
+                </div>
               </div>
             </div>
           </div>

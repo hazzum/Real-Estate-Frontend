@@ -25,7 +25,14 @@ class SingleHouse extends React.Component<SingleHouseProps, {}> {
               <div style={{fontSize: '18px'}}>{this.props.data.price}</div>
             </div>
             <div className="figView"><span className="fa fa-hourglass-half" /></div>
-            <div className="figType">{this.props.data.status}</div>
+            <div
+            className="figType"
+            style={{
+              backgroundColor:
+              ['Active','Back on Market','Contingent','Reduce Price','New','Increase Price','First Right of Refusal','Coming Soon'].includes(this.props.data.status)?
+              "#228B22":"#8b0000"
+            }}
+            >{this.props.data.status}</div>
           </div>
           <h2>{this.props.data.name}</h2>
           <div className="cardAddress"><span className="fa fa-address-card" />

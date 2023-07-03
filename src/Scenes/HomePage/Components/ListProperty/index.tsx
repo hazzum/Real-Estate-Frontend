@@ -38,7 +38,11 @@ class ListProperty extends React.Component<{}, ListComponentState> {
 
   componentDidMount(): void {
     let listingsNew: listing[] = []
-    getListings({ pageNumber: 1, listingStatus: 'Active,Back on Market,Reduce Price,New,Increase Price,First Right of Refusal,Coming Soon', sortingBy: OrderBy['Newest'] }).then(res => {
+    getListings({
+      pageNumber: 1,
+      listingStatus: 'Active,Back on Market,Contingent,Reduce Price,New,Increase Price,First Right of Refusal,Coming Soon',
+      sortingBy: OrderBy['Newest']
+    }).then(res => {
       if (res) {
         res.rows.forEach((ele: Listing) => {
           const photoArr = ele.photosThumb!.split(',')

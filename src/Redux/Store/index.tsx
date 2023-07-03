@@ -5,6 +5,7 @@ import { persistStore, autoRehydrate } from 'redux-persist';
 import user, { UserState, initUserState } from '../Modules/User';
 import status, { StatusState, initStatusState } from '../Modules/Status';
 import criteria, { CriteriaState, initCriteriaState } from 'Redux/Modules/Criteria';
+import logger from 'redux-logger';
 
 export interface RootState {
   status: StatusState;
@@ -24,7 +25,7 @@ const rootReducer = combineReducers<RootState>({
 });
 
 const hydrate: StoreEnhancer<RootState> = autoRehydrate() as StoreEnhancer<RootState>;
-const middleware: StoreEnhancer<RootState> = applyMiddleware(promise(), thunk);
+const middleware: StoreEnhancer<RootState> = applyMiddleware(promise(), thunk, logger);
 const store: Store<RootState> = createStore<RootState>(rootReducer, initState, compose(middleware, hydrate));
 
 persistStore(store, { whitelist: ['status'] });

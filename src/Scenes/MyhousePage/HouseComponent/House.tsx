@@ -82,7 +82,14 @@ class House extends React.Component<HouseProps, HouseState> {
               <div style={{ fontSize: '18px' }}>{this.props.data.price}</div>
             </div>
             <div className="View"><span /></div>
-            <div className="status">{this.props.data.status}</div>
+            <div
+            className="status"
+            style={{
+              backgroundColor:
+              ['Active','Back on Market','Contingent','Reduce Price','New','Increase Price','First Right of Refusal','Coming Soon'].includes(this.props.data.status)?
+              "#228B22":"#8b0000"
+            }}
+            >{this.props.data.status}</div>
           </div>
           <h2>{this.props.data.address}, {this.props.data.area}</h2>
           <div className='Description'>
