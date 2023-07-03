@@ -66,6 +66,7 @@ class SearchForm extends React.Component<SearchBarProps, SearchFormState> {
   }
 
   componentDidMount(): void {
+    this.setState({ showSold: this.props.payload.listingStatus==''?true:false })
     this.setState({ isLoaded: false })
     let listingsNew: listing[] = []
     getListings({...this.props.payload}).then(res => {
@@ -116,7 +117,7 @@ class SearchForm extends React.Component<SearchBarProps, SearchFormState> {
       listingStatus: this.state.showSold ?
         'Active,Back on Market,Contingent,Reduce Price,New,Increase Price,First Right of Refusal,Coming Soon' : ''
     });
-    this.setState({ showSold: !this.state.showSold })
+    this.setState({showSold: !this.state.showSold})
   }
 
   handlePool = () => {
