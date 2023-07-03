@@ -89,11 +89,11 @@ class House extends React.Component<HouseProps, {}> {
             </div>
             <div className="miniCard">
               <div className="fa fa-bed fa-2x"></div>
-              <div><b>{this.props.data.beds}</b> Beds</div>
+              <div><b>{this.props.data.beds}</b> Bedrooms</div>
             </div>
             <div className="miniCard">
               <div className="fa fa-bath fa-2x"></div>
-              <div><b>{this.props.data.toilets}</b> Baths</div>
+              <div><b>{this.props.data.toilets}</b> Bathrooms</div>
             </div>
             <div className="miniCard">
               <div className="fa fa-clock-o fa-2x"></div>
