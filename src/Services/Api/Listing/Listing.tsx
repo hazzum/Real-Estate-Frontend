@@ -1,6 +1,8 @@
 import { CriteriaState } from 'Redux/Modules/Criteria';
 import axios from 'axios';
 
+const apiLink = 'https://sam-realtors-api.onrender.com'
+
 export async function getListings(criteria: CriteriaState) {
   const crit: string[] = []
   if (criteria.pageSize) {crit.push(`pageSize=${criteria.pageSize}`)}
@@ -22,7 +24,7 @@ export async function getListings(criteria: CriteriaState) {
   if (criteria.keyword) {crit.push(`keyword=${criteria.keyword}`)}
   if (criteria.sortingBy) {crit.push(`sortBy=${criteria.sortingBy}`)}
   if (criteria.direction) {crit.push(`sortDir=${criteria.direction}`)}
-  const link = ('https://real-estate-api-production-d74b.up.railway.app/api/listings?')+((crit)?crit.join('&'):'')
+  const link = (`${apiLink}/api/listings?`)+((crit)?crit.join('&'):'')
   try {
     const result = await axios.get(link);
     return result.data;
@@ -32,7 +34,7 @@ export async function getListings(criteria: CriteriaState) {
 } 
 
 export async function getSingleListing(id: number) {
-  const link = `https://real-estate-api-production-d74b.up.railway.app/api/listings/${id}`
+  const link = `${apiLink}/api/listings/${id}`
   try {
     const result = await axios.get(link);
     return result.data;
