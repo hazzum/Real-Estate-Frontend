@@ -35,15 +35,15 @@ class SingleHouse extends React.Component<SingleHouseProps, {}> {
             >{this.props.data.status}</div>
           </div>
           <h2>{this.props.data.name}</h2>
-          <div className="cardAddress"><span className="fa fa-address-card" />
-            {'  '+ this.props.data.address}
+          <div className="cardAddress"><span className="fa fa-address-card fa-lg" />
+          &nbsp;&nbsp;&nbsp;{this.props.data.address}
           </div>
           <ul>
-            <li><span className="fa fa-bed" /> {this.props.data.beds} Bedrooms</li>
-            <li><span className="fa fa-bath" /> {this.props.data.toilets} Total Bathrooms</li>
-            <li><span className="fa fa-home" /> {this.props.data.square} Sq Ft</li>
-            <li><span className="fa fa-clock-o" /> Updated At: {this.props.data.dateUpdated.toLocaleString()}</li>
-            <li><span className="fa fa-book" /> Listing ID #: {this.props.data.mlsId}</li>
+            <li><span className="fa fa-bed fa-lg" />&nbsp;&nbsp;{this.props.data.beds} Bedrooms</li>
+            <li><span className="fa fa-bath fa-lg" />&nbsp;&nbsp;&nbsp;{this.props.data.toilets} Total Bathrooms</li>
+            <li><span className="fa fa-home fa-lg" />&nbsp;&nbsp;&nbsp;{this.props.data.square} Sq Ft</li>
+            <li><span className="fa fa-clock-o fa-lg" />&nbsp;&nbsp;&nbsp;Updated At: {this.props.data.dateUpdated.toLocaleString()}</li>
+            <li><span className="fa fa-book fa-lg" />&nbsp;&nbsp;&nbsp;Listing ID #: {this.props.data.mlsId}</li>
           </ul>
         </Link>
       </div>

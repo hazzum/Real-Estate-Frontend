@@ -1,72 +1,59 @@
 import * as React from 'react';
 import './style.css';
-import ImageGallery from 'react-image-gallery';
+import Carousel from 'react-gallery-carousel';
+import 'react-gallery-carousel/dist/index.css';
 import { listing } from '..';
-import LoadingSpinner from 'Components/Spinner/Spinner';
+import {
+  Accordion,
+  AccordionItem,
+  AccordionItemHeading,
+  AccordionItemButton,
+  AccordionItemPanel,
+} from 'react-accessible-accordion';
+
+import 'react-accessible-accordion/dist/fancy-example.css';
 
 
 interface HouseProps {
   data: listing;
 }
 
-interface HouseState {
-  isLoaded: boolean;
-}
-
-class House extends React.Component<HouseProps, HouseState> {
+class House extends React.Component<HouseProps, {}> {
 
   constructor(props: HouseProps) {
     super(props);
-    this.state = {
-      isLoaded: false
-    };
+
   }
 
   renderImages = () => {
-    let images: Array<ImageGallery.items> = []
     const { imgs, imgsthumb, address } = this.props.data;
     if (imgsthumb.length > 1 && imgs) {
-      imgsthumb.forEach((ele, index) => {
-        images.push({
-          original: imgs[index],
-          thumbnail: ele,
-          thumbnailLoading: "eager",
-          loading: index == 0 ? "eager" : "lazy",
-          originalTitle: address,
-          thumbnailTitle: address,
-          originalAlt: address,
-          thumbnailAlt: address
-        })
-      })
+      const images = imgs.map((ele, index) => ({
+        src: ele,
+        alt: address,
+        thumbnail: imgsthumb[index]
+      }))
       return (
-        <>
-          <div style={{ display: this.state.isLoaded ? "none" : "block" }}>
-            <LoadingSpinner></LoadingSpinner>
-          </div>
-          <div style={{ display: this.state.isLoaded ? "block" : "none" }}>
-            <ImageGallery
-              onImageLoad={() => this.setState({ isLoaded: true })}
-              onErrorImageURL="/No_Image_Available.jpg"
-              lazyLoad={true}
-              items={images}
-              showPlayButton={false}
-              showIndex={true}
-              thumbnailPosition={window.innerWidth<767?'bottom':'right'}
-            />
-          </div>
-        </>
+        <div>
+          <Carousel
+            images={images}
+            style={{ height: window.innerWidth > 767 ? '57vh' : '43vh' }}
+            thumbnailWidth='13%'
+            thumbnailHeight='13%'
+            hasThumbnails={false}
+            hasThumbnailsAtMax={true}
+            shouldMinimizeOnClick={true}
+            shouldMaximizeOnClick={true}
+            canAutoPlay={false}
+          />
+        </div>
       );
     }
     else if (imgsthumb.length == 1) {
       return (
-        <>
-          <div style={{ display: this.state.isLoaded ? "none" : "block" }}>
-            <LoadingSpinner></LoadingSpinner>
-          </div>
-          <div style={{ display: this.state.isLoaded ? "block" : "none" }}>
-            <img src={this.props.data.imgThumb} alt={this.props.data.address} onLoad={() => this.setState({ isLoaded: true })} />
-          </div>
-        </>
+        <div>
+          <img src={this.props.data.imgThumb} alt={this.props.data.address} onLoad={() => this.setState({ isLoaded: true })} />
+        </div>
       )
     }
     else { return (<img src="/No_Image_Available.jpg" alt="Not available" />) }
@@ -83,54 +70,118 @@ class House extends React.Component<HouseProps, HouseState> {
             </div>
             <div className="View"><span /></div>
             <div
-            className="status"
-            style={{
-              backgroundColor:
-              ['Active','Back on Market','Contingent','Reduce Price','New','Increase Price','First Right of Refusal','Coming Soon'].includes(this.props.data.status)?
-              "#228B22":"#8b0000"
-            }}
+              className="status"
+              style={{
+                backgroundColor:
+                  ['Active', 'Back on Market', 'Contingent', 'Reduce Price', 'New', 'Increase Price', 'First Right of Refusal', 'Coming Soon'].includes(this.props.data.status) ?
+                    "#228B22" : "#8b0000"
+              }}
             >{this.props.data.status}</div>
           </div>
-          <h2>{this.props.data.address}, {this.props.data.area}</h2>
           <div className='Description'>
-            <p><span className="fa fa-globe" /> Directions:  <b>{this.props.data.direction}</b></p>
-            <p><b>{this.props.data.remarks}</b></p>
+            <h2>{this.props.data.address}, {this.props.data.area}</h2>
+            <hr className="solid" />
           </div>
-          <div className='infoCard'>
-            <ul>
-              <li><span className="fa fa-home" /> Area:  <b>{this.props.data.square}</b> Sq Ft</li>
-              <li><span className="fa fa-bed" /> Bedrooms:  <b>{this.props.data.beds}</b></li>
-              <li><span className="fa fa-bath" /> Total Bathrooms:  <b>{this.props.data.toilets}</b></li>
-              <li><span className="fa fa-clock-o" /> Status:<span className="Tab"></span><b>{this.props.data.status}</b></li>
-              <li><span className="fa fa-money" /> Listed Price:<span className="Tab"></span><b>{this.props.data.price}</b></li>
-              <li><span className="fa fa-home" /> Lot Dim.:<span className="Tab"></span><b>{this.props.data.lotDim}</b></li>
-              <li><span className="fa fa-bed" /> Master Bedroom Dim.:<span className="Tab"></span><b>{this.props.data.Bdroom1}</b></li>
-              <li><span className="fa fa-bed" /> Bedroom #2 Dim.:<span className="Tab"></span><b>{this.props.data.Bdroom2}</b></li>
-              <li><span className="fa fa-bed" /> Bedroom #3 Dim.:<span className="Tab"></span><b>{this.props.data.Bdroom3}</b></li>
-              <li><span className="fa fa-bed" /> Bedroom #4 Dim.:<span className="Tab"></span><b>{this.props.data.Bdroom4}</b></li>
-              <li><span className="fa fa-bed" /> Bedroom #5 Dim.:<span className="Tab"></span><b>{this.props.data.Bdroom5}</b></li>
-              <li><span className="fa fa-life-ring" /> Pool:<span className="Tab"></span><b>{this.props.data.pool}</b></li>
-              <li><span className="fa fa-ship" /> Waterfront:<span className="Tab"></span><b>{this.props.data.waterfront}</b></li>
-              <li><span className="fa fa-fire" /> Fireplace:<span className="Tab"></span><b>{this.props.data.fireplace}</b></li>
-              <li><span className="fa fa-wifi" /> Internet:<span className="Tab"></span><b>{this.props.data.internet}</b></li>
-            </ul>
-            <ul>
-              <li><span className="fa fa-clock-o" /> Updated At:<span className="Tab"></span><b>{this.props.data.dateUpdated.toLocaleString()}</b></li>
-              <li><span className="fa fa-search" /> Listing ID #:<span className="Tab"></span><b>{this.props.data.mlsId}</b></li>
-              <li><span className="fa fa-user" /> Owner:<span className="Tab"></span><b>{this.props.data.owner}</b></li>
-              <li><span className="fa fa-phone" /> Owner Number:<span className="Tab"></span><b>{this.props.data.phone}</b></li>
-              <li><span className="fa fa-money" /> Taxes:<span className="Tab"></span><b>{this.props.data.tax}</b></li>
-              <li><span className="fa fa-money" /> Homeowner Fee:<span className="Tab"></span><b>{this.props.data.homeOwnerFee}</b></li>
-              <li><span className="fa fa-globe" /> Area:<span className="Tab"></span><b>{this.props.data.area}</b></li>
-              <li><span className="fa fa-globe" /> County:<span className="Tab"></span><b>{this.props.data.county}</b></li>
-              <li><span className="fa fa-globe" /> City:<span className="Tab"></span><b>{this.props.data.city.charAt(0).toUpperCase() + this.props.data.city.slice(1).toLowerCase()}</b></li>
-              <li><span className="fa fa-home" /> Dining Room Dim.:<span className="Tab"></span><b>{this.props.data.diningDim}</b></li>
-              <li><span className="fa fa-home" /> Living Room Dim.:<span className="Tab"></span><b>{this.props.data.livingDim}</b></li>
-              <li><span className="fa fa-home" /> Family Room Dim.:<span className="Tab"></span><b>{this.props.data.familyDim}</b></li>
-              <li><span className="fa fa-home" /> Kitchen Dim.:<span className="Tab"></span><b>{this.props.data.kitchenDim}</b></li>
-              <li><span className="fa fa-home" /> Warranty:<span className="Tab"></span><b>{this.props.data.warranty}</b></li>
-              <li><span className="fa fa-history" /> Year Built:<span className="Tab"></span><b>{this.props.data.yearBuilt}</b></li>
-            </ul>
+          <div className="summCard">
+            <div className="miniCard">
+              <div className="fa fa-home fa-2x"></div>
+              <div><b>{this.props.data.square}</b> Sq Ft</div>
+            </div>
+            <div className="miniCard">
+              <div className="fa fa-bed fa-2x"></div>
+              <div><b>{this.props.data.beds}</b> Beds</div>
+            </div>
+            <div className="miniCard">
+              <div className="fa fa-bath fa-2x"></div>
+              <div><b>{this.props.data.toilets}</b> Baths</div>
+            </div>
+            <div className="miniCard">
+              <div className="fa fa-clock-o fa-2x"></div>
+              <div><b>{this.props.data.status}</b></div>
+            </div>
+          </div>
+          <div className='Description'>
+            <hr className="solid" />
+            <Accordion allowZeroExpanded preExpanded={['a']}>
+              <AccordionItem uuid="a">
+                <AccordionItemHeading>
+                  <AccordionItemButton>
+                    <span className="fa fa-search" />  Info
+                  </AccordionItemButton>
+                </AccordionItemHeading>
+                <AccordionItemPanel className="infoCard">
+                  <ul>
+                    <li><span className="fa fa-search fa-lg" />&nbsp;&nbsp;&nbsp;Listing ID #:<span className="Tab"></span><b>{this.props.data.mlsId}</b></li>
+                    <li><span className="fa fa-clock-o fa-lg" />&nbsp;&nbsp;&nbsp;Updated At:<span className="Tab"></span><b>{this.props.data.dateUpdated.toLocaleString()}</b></li>
+                    <li><span className="fa fa-globe fa-lg" />&nbsp;&nbsp;&nbsp;Area:<span className="Tab"></span><b>{this.props.data.area}</b></li>
+                    <li><span className="fa fa-globe fa-lg" />&nbsp;&nbsp;&nbsp;City:<span className="Tab"></span><b>{this.props.data.city.charAt(0).toUpperCase() + this.props.data.city.slice(1).toLowerCase()}</b></li>
+                    <li><span className="fa fa-globe fa-lg" />&nbsp;&nbsp;&nbsp;County:<span className="Tab"></span><b>{this.props.data.county}</b></li>
+                    <li><span className="fa fa-money fa-lg" />&nbsp;&nbsp;Taxes:<span className="Tab"></span><b>{this.props.data.tax}</b></li>
+                    <li><span className="fa fa-history fa-lg" />&nbsp;&nbsp;&nbsp;Year Built:<span className="Tab"></span><b>{this.props.data.yearBuilt}</b></li>
+                    <li><span className="fa fa-user fa-lg" />&nbsp;&nbsp;&nbsp;Owner:<span className="Tab"></span><b>{this.props.data.owner}</b></li>
+                    <li><span className="fa fa-phone fa-lg" />&nbsp;&nbsp;&nbsp;Owner Number:<span className="Tab"></span><b>{this.props.data.phone}</b></li>
+                    <li><span className="fa fa-money fa-lg" />&nbsp;&nbsp;Homeowner Fee:<span className="Tab"></span><b>{this.props.data.homeOwnerFee}</b></li>
+                  </ul>
+                </AccordionItemPanel>
+              </AccordionItem>
+              <AccordionItem uuid="b">
+                <AccordionItemHeading>
+                  <AccordionItemButton>
+                    <span className="fa fa-home" />  House Dimensions
+                  </AccordionItemButton>
+                </AccordionItemHeading>
+                <AccordionItemPanel className="infoCard">
+                  <ul>
+                    <li><span className="fa fa-home fa-lg" />&nbsp;&nbsp;&nbsp;Lot Dim.:<span className="Tab"></span><b>{this.props.data.lotDim}</b></li>
+                    <li><span className="fa fa-bed fa-lg" />&nbsp;&nbsp;Master Bedroom Dim.:<span className="Tab"></span><b>{this.props.data.Bdroom1}</b></li>
+                    <li><span className="fa fa-bed fa-lg" />&nbsp;&nbsp;Bedroom #2 Dim.:<span className="Tab"></span><b>{this.props.data.Bdroom2}</b></li>
+                    <li><span className="fa fa-bed fa-lg" />&nbsp;&nbsp;Bedroom #3 Dim.:<span className="Tab"></span><b>{this.props.data.Bdroom3}</b></li>
+                    <li><span className="fa fa-bed fa-lg" />&nbsp;&nbsp;Bedroom #4 Dim.:<span className="Tab"></span><b>{this.props.data.Bdroom4}</b></li>
+                    <li><span className="fa fa-bed fa-lg" />&nbsp;&nbsp;Bedroom #5 Dim.:<span className="Tab"></span><b>{this.props.data.Bdroom5}</b></li>
+                    <li><span className="fa fa-home fa-lg" />&nbsp;&nbsp;&nbsp;Dining Room Dim.:<span className="Tab"></span><b>{this.props.data.diningDim}</b></li>
+                    <li><span className="fa fa-home fa-lg" />&nbsp;&nbsp;&nbsp;Living Room Dim.:<span className="Tab"></span><b>{this.props.data.livingDim}</b></li>
+                    <li><span className="fa fa-home fa-lg" />&nbsp;&nbsp;&nbsp;Family Room Dim.:<span className="Tab"></span><b>{this.props.data.familyDim}</b></li>
+                    <li><span className="fa fa-home fa-lg" />&nbsp;&nbsp;&nbsp;Kitchen Dim.:<span className="Tab"></span><b>{this.props.data.kitchenDim}</b></li>
+                  </ul>
+                </AccordionItemPanel>
+              </AccordionItem>
+              <AccordionItem uuid="c">
+                <AccordionItemHeading>
+                  <AccordionItemButton>
+                    <span className="fa fa-wifi" />  House Features
+                  </AccordionItemButton>
+                </AccordionItemHeading>
+                <AccordionItemPanel className="infoCard">
+                  <ul>
+                    <li><span className="fa fa-life-ring fa-lg" />&nbsp;&nbsp;&nbsp;Pool:<span className="Tab"></span><b>{this.props.data.pool}</b></li>
+                    <li><span className="fa fa-ship fa-lg" />&nbsp;&nbsp;Waterfront:<span className="Tab"></span><b>{this.props.data.waterfront}</b></li>
+                    <li><span className="fa fa-fire fa-lg" />&nbsp;&nbsp;&nbsp;&nbsp;Fireplace:<span className="Tab"></span><b>{this.props.data.fireplace}</b></li>
+                    <li><span className="fa fa-wifi fa-lg" />&nbsp;&nbsp;Internet:<span className="Tab"></span><b>{this.props.data.internet}</b></li>
+                    <li><span className="fa fa-home fa-lg" />&nbsp;&nbsp;&nbsp;Warranty:<span className="Tab"></span><b>{this.props.data.warranty}</b></li>
+                  </ul>
+                </AccordionItemPanel>
+              </AccordionItem>
+              <AccordionItem uuid="d">
+                <AccordionItemHeading>
+                  <AccordionItemButton>
+                    <span className="fa fa-globe" />  Directions
+                  </AccordionItemButton>
+                </AccordionItemHeading>
+                <AccordionItemPanel>
+                  <p><b>{this.props.data.direction}</b></p>
+                </AccordionItemPanel>
+              </AccordionItem>
+              <AccordionItem uuid="e">
+                <AccordionItemHeading>
+                  <AccordionItemButton>
+                    <span className="fa fa-weixin" />  Owner's Description
+                  </AccordionItemButton>
+                </AccordionItemHeading>
+                <AccordionItemPanel>
+                  <p style={{ marginLeft: 13 }}><b>{this.props.data.remarks}</b></p>
+                </AccordionItemPanel>
+              </AccordionItem>
+            </Accordion>
           </div>
         </div>
       </div>

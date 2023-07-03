@@ -1,5 +1,3 @@
-@import "~react-image-gallery/styles/css/image-gallery.css";
-
 .House {
   overflow: visible;
   
@@ -14,23 +12,55 @@ a.newCard, div.newCard {
   background-color: #fff;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.13);
   margin-bottom: 20px;
-  cursor: pointer;
   text-decoration: none;
 }
 
 .infoCard {
   display: flex;
   align-items: left;
-  justify-content: center;
+  justify-content: left;
   text-align: left;
   flex-direction: row;
   width: 100%;
   background-color: #fff;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.13);
-  margin-bottom: 20px;
-  cursor: pointer;
+  margin-bottom: 0;
   text-decoration: none;
   font-size: 15px;
+}
+
+.summCard {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  text-align: center;
+  flex-direction: row;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.13);
+  margin-bottom: 0;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+
+.miniCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  padding: 20px 5px 20px 5px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.3) inset;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+hr.solid {
+  border-top: 3px solid #bbb;
 }
 
 .Tab {
@@ -38,23 +68,14 @@ a.newCard, div.newCard {
   margin-left: 1.5em;
 }
 
-.infoCard > ul {
-  margin: 0 10px 0 10px;
-  padding: auto;
-  border: 4px solid #111;
-  border-radius: 10px;
-  width: 50%;
-}
-
 .Description {
-  padding: 10px 3px 10px 3px;
-  margin: 0 10px 0 10px;
-  width: 97%;
+  padding: 0;
+  width: 100%;
   font-size: 15px;
 }
 
 .infoCard > ul > li {
-  margin-left: -30px;
+  margin-left: -20px;
 }
 
 .newFigure {
@@ -74,12 +95,6 @@ a.newCard, div.newCard {
   .infoCard {
     flex-direction: column;
   }
-
-  .infoCard > ul {
-    padding: auto;
-    width: 100%;
-    border:none;
-  }
 }
 
 .newFigure img {
@@ -92,7 +107,6 @@ a.newCard, div.newCard {
 
 .newFigure img {
   transition: transform 0.35s;
-  transform: scale(1.15);
 }
 
 a.newCard:hover img, div.newCard:hover img {
@@ -235,8 +249,8 @@ a.newCard:hover, div.newCard:hover {
   text-decoration: none;
 }
 
-a.newCard:hover h2, div.newCard:hover h2 {
-  color: #0eaaa6;
+a.newCard h2, div.newCard h2 {
+  color: #666;
   text-decoration: none;
 }
 

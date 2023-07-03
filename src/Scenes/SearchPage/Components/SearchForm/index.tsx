@@ -12,7 +12,6 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import * as _ from "lodash";
 import ReactPaginate from 'react-paginate';
-import { Link } from 'react-router-dom';
 import Switch from 'Components/Switch/Switch';
 
 const mapStateToProps = (state: any) => ({
@@ -244,7 +243,7 @@ class SearchForm extends React.Component<SearchBarProps, SearchFormState> {
           </div>
           <div className="row form-group">
             <div className="col-xs-12 col-sm-8 col-md-6 yearOfBirth">
-              <h4>Asc/Desc</h4>
+              <h4>Ascending/Descending?</h4>
               <div className="selectItem">
                 <SelectComponent selected={this.props.payload.direction} onSelect={this.handleSortDir} listItem={Object.values(OrderDir)} />
               </div>

@@ -12,7 +12,8 @@ export enum OrderDir {
 }
 
 const enum StatusActionType {
-  REHYDRATE = 'persist/REHYDRATE'
+  REHYDRATE = 'persist/REHYDRATE',
+  RESET = 'persist/RESET'
 }
 
 export enum AreaCode {
@@ -95,10 +96,6 @@ export const initCriteriaState: CriteriaState = {
   pageSize: 20,
   pageNumber: 1,
   listingStatus: 'Active,Back on Market,Contingent,Reduce Price,New,Increase Price,First Right of Refusal,Coming Soon',
-  lowerPrice:0,
-  upperPrice:10000000,
-  lowerBdrooms:1,
-  lowerBthrooms:1,
   pool: false,
   fireplace: false,
   waterfront: false,
@@ -115,10 +112,19 @@ export function changeState(change: Partial<CriteriaState>) {
   };
 }
 
+export function resetState() {
+  return {
+    type: StatusActionType.RESET
+  };
+}
+
 const criteriaReducer = (state: CriteriaState = initCriteriaState, action: CriteriaAction) => {
   switch (action.type) {
     case StatusActionType.REHYDRATE: {
       return {...state, ...action.payload};
+    }
+    case StatusActionType.RESET: {
+      return {...initCriteriaState};
     }
     default: return {...state, ...action.payload};
   }

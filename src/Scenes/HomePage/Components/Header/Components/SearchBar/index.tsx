@@ -5,7 +5,7 @@ import SelectComponent from 'Components/SelectComponent';
 import { Link } from 'react-router-dom';
 import { connect, Dispatch } from 'react-redux';
 import { getTranslation, SupportedLanguage } from 'Services/Geo';
-import { AreaCode, changeState, CriteriaState } from 'Redux/Modules/Criteria';
+import { AreaCode, changeState, CriteriaState, resetState } from 'Redux/Modules/Criteria';
 import { mixed } from 'Models/Unknown';
 
 const mapStateToProps = (state: any) => ({
@@ -17,6 +17,9 @@ const mapStateToProps = (state: any) => ({
 const mapDispatchToProps = (dispatch: Dispatch<{}>) => ({
   changeState: (payload: Partial<CriteriaState>) => {
     dispatch(changeState(payload));
+  },
+  resetState: () => {
+    dispatch(resetState())
   }
 });
 
@@ -25,6 +28,7 @@ interface SearchBarProps {
   isPersist: boolean;
   payload: Partial<CriteriaState>;
   changeState: (payload: Partial<CriteriaState>) => void;
+  resetState: () => void;
 }
 
 interface SelectBarState {
@@ -57,7 +61,7 @@ class SearchBar extends React.Component<SearchBarProps, SelectBarState> {
   handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
     let inputValue = value;
-    if (name=='lowerPrice' || name=='upperPrice') {inputValue=parseInt(inputValue)>1000000000?'1000000000':inputValue;}
+    if (name == 'lowerPrice' || name == 'upperPrice') { inputValue = parseInt(inputValue) > 1000000000 ? '1000000000' : inputValue; }
     const criteria: Partial<CriteriaState> = {}
     criteria[name] = inputValue;
     this.props.changeState(criteria);
@@ -88,6 +92,10 @@ class SearchBar extends React.Component<SearchBarProps, SelectBarState> {
     else {
       this.props.changeState({ lowerBthrooms: parseInt(bthValue) });
     }
+  }
+
+  handleReset = () => {
+    this.props.resetState()
   }
 
   toggleAdvSearch = () => {
@@ -169,6 +177,9 @@ class SearchBar extends React.Component<SearchBarProps, SelectBarState> {
                 type="number" name="upperPrice" onChange={this.handleChange} value={this.props.payload.upperPrice}
                 placeholder={getTranslation(this.props.lang, 'To')} />
             </div>
+          </div>
+          <div className={`form-group${this.state.isAdvance ? ' adv' : ' hidden-xs'}`}>
+            <button className="btn btn-danger isThemeBtn" onClick={this.handleReset}>Reset</button>
           </div>
           {/* <div className={`form-group${this.state.isAdvance ? ' adv' : ' hidden-xs'}`}>
             <div className="checkbox custom-checkbox">

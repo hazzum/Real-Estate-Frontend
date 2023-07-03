@@ -20,7 +20,7 @@ class SelectComponent extends React.Component<SelectComponentProps, SelectCompon
     super(props);
     this.state = {
       showList: false,
-      itemSelected: this.props.selected?this.props.listItem.findIndex((ele)=>this.props.selected==ele):0
+      itemSelected: this.props.selected ? this.props.listItem.findIndex((ele) => this.props.selected == ele) : 0
     };
   }
   componentWillUnmount() {
@@ -53,6 +53,17 @@ class SelectComponent extends React.Component<SelectComponentProps, SelectCompon
     this.showToggle();
   }
 
+  chooseClass = (selected: string) => {
+    switch (selected) {
+      case 'DESC':
+        return 'fa fa-sort-amount-desc'
+      case 'ASC':
+        return 'fa fa-sort-amount-asc'
+      default:
+        return 'dropdown-label'
+    }
+  }
+
   render() {
     return (
       <div
@@ -60,14 +71,16 @@ class SelectComponent extends React.Component<SelectComponentProps, SelectCompon
         className={'selectComponent' + (this.state.showList ? ' active' : '')}
       >
         <div className="form-control dropdown-toggle" onClick={this.showToggle}>
-          <span className="dropdown-label">{this.props.listItem[this.state.itemSelected]}</span>
+          <span className="dropdown-label">
+            <span className={this.chooseClass(this.props.selected)} />  {this.props.listItem[this.state.itemSelected]}
+          </span>
           <span className="caret" />
         </div>
         <ul className={`dropdown-menu dropdown-select${this.props.switchTop ? ' switchTop' : ''}`}>
           {this.props.listItem.map((item, index) => {
             return (
               <li key={index} onClick={e => { this.doSelect(index); this.props.onSelect(item); }}>
-                <a>{item}</a>
+                <a><span className={this.chooseClass(item)} />   {item}</a>
               </li>
             );
           })}
