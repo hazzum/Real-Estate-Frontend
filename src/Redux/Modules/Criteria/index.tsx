@@ -101,7 +101,7 @@ export const initCriteriaState: CriteriaState = {
   waterfront: false,
   internet: false,
   keyword: '',
-  sortingBy: OrderBy['Newest'],
+  sortingBy: OrderBy['last Updated'],
   direction: OrderDir.orderDesc,
 };
 
