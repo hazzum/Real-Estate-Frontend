@@ -37,7 +37,7 @@ class House extends React.Component<HouseProps, {}> {
         <div>
           <Carousel
             images={images}
-            style={{ height: window.innerWidth > 767 ? '57vh' : '43vh' }}
+            style={{ height: window.innerWidth > 767 ? '62vh' : '43vh' }}
             thumbnailWidth='13%'
             thumbnailHeight='13%'
             hasThumbnails={false}
@@ -45,6 +45,8 @@ class House extends React.Component<HouseProps, {}> {
             shouldMinimizeOnClick={true}
             shouldMaximizeOnClick={true}
             canAutoPlay={false}
+            hasTransition= {true}
+            transitionSpeed={3}
           />
         </div>
       );

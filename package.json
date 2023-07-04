@@ -17,6 +17,7 @@
     "@types/redux-promise-middleware": "0.0.8",
     "@types/redux-thunk": "^2.1.0",
     "axios": "^0.16.2",
+    "copyfiles": "^2.4.1",
     "currency.js": "^2.0.4",
     "lodash": "^4.17.21",
     "react": "^16.4.0",
@@ -38,7 +39,7 @@
   },
   "scripts": {
     "dev": "react-scripts-ts start",
-    "build": "react-scripts-ts build",
+    "build": "react-scripts-ts build && copyfiles _redirects build",
     "start": "cp src/index.main.tsx src/index.tsx && react-scripts-ts start",
     "dev-build": "cp src/index.main.tsx src/index.tsx && react-scripts-ts build",
     "start-admin": "cp src/index.admin.tsx src/index.tsx && react-scripts-ts start",
