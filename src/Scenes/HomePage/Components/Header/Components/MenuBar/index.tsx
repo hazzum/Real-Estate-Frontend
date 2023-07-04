@@ -79,6 +79,7 @@ class MenuBar extends React.Component<MenuBarProps, MenuBarState> {
         </div>
         <a href="/">
           <div className="homeLogo osLight">
+            <img src="XCELLENCE.png"></img>
             <Icon name="home" size="2x" />
             <span>Sam Realtors</span>
           </div>

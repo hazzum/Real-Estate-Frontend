@@ -2,6 +2,7 @@ import * as React from 'react';
 import './style.css';
 import Header from './Components/Header';
 import LeftSide from './Components/LeftSide';
+import Footer from 'Scenes/HomePage/Components/Footer';
 
 interface DashboardState {
   isExpand: boolean;
@@ -32,7 +33,7 @@ class Dashboard extends React.Component<{}, DashboardState> {
         </div>
         <div className="bodyWrapper">
           <LeftSide isExpand={this.state.isExpand} />
-          <div 
+          <div
             className={'contentWrapper' + (this.state.isExpand ? ' smallSize' : '')}
             onClick={this.clickOutsideLeftSide}
           >

@@ -131,9 +131,9 @@ class SearchForm extends React.Component<SearchBarProps, SearchFormState> {
     this.props.changeState({ fireplace: !this.props.payload.fireplace });
   }
 
-  handleInternet = () => {
-    this.props.changeState({ internet: !this.props.payload.internet });
-  }
+  // handleInternet = () => {
+  //   this.props.changeState({ internet: !this.props.payload.internet });
+  // }
 
   handleSortDir = (sortDir: OrderDir) => {
     this.props.changeState({ direction: sortDir });
@@ -256,7 +256,7 @@ class SearchForm extends React.Component<SearchBarProps, SearchFormState> {
                 <SelectComponent
                   selected={this.props.payload.pageSize}
                   onSelect={this.handlePageSize}
-                  listItem={Array.from({ length: 31 }, (value, index) => (index + 10).toString())} />
+                  listItem={['20', '50', '70','100']} />
               </div>
             </div>
           </div>
@@ -301,14 +301,14 @@ class SearchForm extends React.Component<SearchBarProps, SearchFormState> {
                 </div>
               </div>
             </div>
-            <div className="col-xs-6 col-sm-6 col-md-4 col-lg-4 formItem">
+            {/* <div className="col-xs-6 col-sm-6 col-md-4 col-lg-4 formItem">
               <div className="formField">
                 <label><b>Internet?</b></label>
                 <div className="volume">
                   <Switch id="iii" isOn={this.props.payload.internet ? true : false} handleToggle={this.handleInternet}></Switch>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
           {/* <div className="row form-group">
             <div className="col-xs-6 col-sm-6 col-md-3 col-lg-3 formItem">

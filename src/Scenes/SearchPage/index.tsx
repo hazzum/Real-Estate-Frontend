@@ -3,6 +3,7 @@ import './style.css';
 import { RouteComponentProps } from 'react-router-dom';
 import Dashboard from 'Components/DashboardLayout';
 import SearchForm from './Components/SearchForm';
+import Footer from 'Scenes/HomePage/Components/Footer';
 
 class SearchPage extends React.Component<RouteComponentProps<{}>, {}> {
   render() {
@@ -14,6 +15,9 @@ class SearchPage extends React.Component<RouteComponentProps<{}>, {}> {
           </div>
           <div className="searchFormWrapper">
             <SearchForm />
+          </div>
+          <div className="footerWrapper">
+            <Footer />
           </div>
         </Dashboard>
       </div>

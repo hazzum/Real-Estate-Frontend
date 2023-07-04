@@ -1,3 +1,4 @@
+import './index.css';
 import * as React from 'react';
 import { render } from 'react-dom';
 import store from './Redux/Store';

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import './style.css';
+import { Link } from 'react-router-dom';
 
 interface ListCompProps {
   list: string[];
@@ -20,9 +21,28 @@ class ListComp extends React.Component<ListCompProps, {}> {
         </div>
         <ul className="listMain">
           {this.props.list.map((item, index) => {
-            return (
-              <li key={index}><a href="#">{item}</a></li>
-            );
+            switch (item) {
+              case 'Home Page':
+                return (
+                  <li key={index}><Link to="/">{item}</Link></li>
+                );
+              case 'Listings':
+                return (
+                  <li key={index}><Link to="/search">{item}</Link></li>
+                );
+              case 'Contact Us':
+                return (
+                  <li key={index}><Link to="/contact">{item}</Link></li>
+                );
+              case 'About Us':
+                return (
+                  <li key={index}><Link to="/about">{item}</Link></li>
+                );
+              default:
+                return (
+                  <li key={index}><a href="#">{item}</a></li>
+                );
+            }
           })}
         </ul>
       </div>

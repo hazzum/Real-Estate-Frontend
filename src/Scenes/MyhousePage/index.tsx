@@ -9,6 +9,7 @@ import currency = require('currency.js');
 import LoadingSpinner from 'Components/Spinner/Spinner';
 import { AreaCode } from 'Redux/Modules/Criteria';
 import { mixed } from 'Models/Unknown';
+import Footer from 'Scenes/HomePage/Components/Footer';
 
 export interface listing {
   name: string
@@ -140,6 +141,9 @@ class MyhousePage extends React.Component<RouteComponentProps<{ id: string }>, L
           </div>
           <div className="wrapper stack gap-8">
             <House data={this.state.listing} />
+          </div>
+          <div className="footerWrapper">
+            <Footer />
           </div>
         </Dashboard>
       ) : (

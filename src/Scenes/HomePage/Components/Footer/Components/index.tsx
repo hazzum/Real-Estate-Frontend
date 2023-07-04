@@ -5,12 +5,14 @@ import ListComp from './ListComp';
 import GetInTouch from './GetInTouch';
 // import Subscribe from './Subscribe';
 
+const currentYear = new Date().getFullYear();
+
 class FooterContainer extends React.Component<{}, {}> {
   listCompany =  [
-    'About',
-    'Help',
-    'Policies',
-    'Terms & Privacy'
+    'Home Page',
+    'Listings',
+    'Contact Us',
+    'About Us'
   ];
   listDiscover = [
     'Become a Member',
@@ -25,13 +27,13 @@ class FooterContainer extends React.Component<{}, {}> {
     return (
       <div className="footerContainer">
         <div className="row">
+            <GetInTouch>Get in Touch</GetInTouch>
             <ListComp list={this.listCompany}>Company</ListComp>
             {/* <ListComp list={this.listDiscover}>Discover</ListComp> */}
-            <GetInTouch>Get in Touch</GetInTouch>
             {/* <Subscribe>Subscribe to Our Newsletter</Subscribe> */}
         </div>
         <div className="footerCopyRight">
-        Sam Realtors<br/> © 2023 Sam Realtors <br/>
+        Sam Realtors<br/> © {currentYear} Sam Realtors <br/>
         </div>
       </div>
     );

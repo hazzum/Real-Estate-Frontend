@@ -1,12 +1,12 @@
 .getInTouch .touchTitle{
-    font-size: 16px;
+    font-size: 20px;
     line-height: 16px;
     padding-bottom: 20px;
     color: #c6e4e3;
 }
 
 .getInTouch .mainList {
-  margin: 0;
+  margin-right: 25px;
   padding: 0 0 20px 0;
   list-style-type: none;
   padding-bottom: 20px;
@@ -22,14 +22,14 @@
 }
 
 .getInTouch li.footer-phone {
-  font-size: 20px;
-  line-height: 20px;
-  padding-bottom: 15px;
+  font-size: 15px;
+  line-height: 15px;
+  padding-bottom: 5px;
 }
 
 
 .getInTouch li.footer-address {
-  padding-bottom: 15px;
+  padding-bottom: 1px;
 }
 
 .getInTouch li.footer-address p {
@@ -58,7 +58,9 @@
 
 
 .btn-icon.btn-sm {
-  width: 31px;
+  width: 35px;
+  height:35px;
+  margin-left: 5px;
 }
 
 .btn-icon.btn-round {
@@ -68,4 +70,31 @@
 .btn-o.btn-white:hover{
   background-color: #fff;
   color: #333;
+}
+
+hr.SOlid {
+  border-top: 1px solid #bbb;
+}
+
+/* unvisited link */
+a.LinkA:link {
+  color: #7FDBFF;
+  text-decoration: underline;
+}
+
+/* visited link */
+a.LinkA:visited {
+  color: #B10DC9;
+}
+
+/* mouse over link */
+a.LinkA:hover {
+  color: #0074D9;
+  text-decoration: underline;
+}
+
+/* selected link */
+a.LinkA:active {
+  color: #0074D9;
+  text-decoration: underline;
 }

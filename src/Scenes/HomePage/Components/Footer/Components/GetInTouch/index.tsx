@@ -2,35 +2,52 @@ import * as React from 'react';
 import './style.css';
 
 class GetInTouch extends React.Component<{}, {}> {
-  
+
   render() {
     return (
-      <div className="getInTouch col-xs-12 col-sm-6 col-md-3 col-lg-3">
+      <div className="getInTouch col-xs-12 col-sm-12 col-md-6 col-lg-6">
         <div className="touchTitle osLight">
           {this.props.children}
         </div>
-        <ul className="mainList">
-          <li className="footer-phone"><span className="fa fa-phone"/> +1 (850) 44#-####</li>
-          <li className="footer-address osLight">
-            <p>Tallahassee</p>
-            <p>Florida</p>
-            <p>Hossam Foaud</p>
-          </li>
-          <li>
-          <a href="#" className="btn btn-sm btn-icon btn-round btn-o btn-white">
-            <span className="fa fa-facebook"/>
-          </a> 
-          <a href="#" className="btn btn-sm btn-icon btn-round btn-o btn-white">
-            <span className="fa fa-twitter"/>
-          </a> 
-          <a href="#" className="btn btn-sm btn-icon btn-round btn-o btn-white">
-            <span className="fa fa-google-plus"/>
-          </a> 
-          <a href="#" className="btn btn-sm btn-icon btn-round btn-o btn-white">
-            <span className="fa fa-linkedin"/>
-          </a> 
-          </li>
-        </ul>
+        <div style={{ display: 'flex', flexDirection: window.innerWidth > 777 ? 'row' : 'column' }}>
+          <ul className="mainList">
+            <li className="footer-phone">
+              <img src="../sam_ameen.png" height={110} width={110}></img>
+              <hr style={{ borderTop: 'hidden' }} />
+            </li>
+            <li>
+              <a href="https://www.facebook.com/xcellencerealtycareers/" target="_blank" className="btn btn-sm btn-icon btn-round btn-o btn-white">
+                <span className="fa fa-facebook fa-lg" />
+              </a>
+              <a href="https://www.instagram.com/xcellencerealty/" target="_blank" className="btn btn-sm btn-icon btn-round btn-o btn-white">
+                <span className="fa fa-instagram fa-lg" />
+              </a>
+            </li>
+          </ul>
+          <ul className="mainList">
+            <li className="footer-phone">
+              <span className="fa fa-phone" /> +1 (850) 445-7233
+            </li>
+            <li className="footer-address osLight">
+              <h4><b style={{ color: 'lightblue' }}>H. "Sam" Ameen</b></h4>
+              <h5>Realtor ®</h5>
+              <h5>Xcellence Realty, Inc.</h5>
+              <hr className="SOlid" />
+            </li>
+            <li>
+              <p>
+                <span className="fa fa-globe fa-lg">&nbsp;&nbsp;
+                  <a className='LinkA' href="https://xcellencerealty.com/agents/hassam-ameen/" target='_blank'>https://xcellencerealty.com/agents/hassam-ameen/</a>
+                </span>
+              </p>
+              <p>
+                <span className="fa fa-envelope fa-lg">&nbsp;&nbsp;
+                  <a className='LinkA' href="mailto:hfameen@hotmail.com">hfameen@hotmail.com</a>
+                </span>
+              </p>
+            </li>
+          </ul>
+        </div>
       </div>
     );
   }
