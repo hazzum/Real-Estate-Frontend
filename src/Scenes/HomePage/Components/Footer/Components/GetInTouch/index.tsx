@@ -5,11 +5,11 @@ class GetInTouch extends React.Component<{}, {}> {
 
   render() {
     return (
-      <div className="getInTouch col-xs-12 col-sm-12 col-md-6 col-lg-6">
+      <div className="getInTouch col-xs-9 col-sm-9 col-md-8 col-lg-6">
         <div className="touchTitle osLight">
           {this.props.children}
         </div>
-        <div style={{ display: 'flex', flexDirection: window.innerWidth > 777 ? 'row' : 'column' }}>
+        <div style={{ display: 'flex', flexDirection: window.innerWidth > 384 ? 'row' : 'column' }}>
           <ul className="mainList">
             <li className="footer-phone">
               <img src="../sam_ameen.png" height={110} width={110}></img>
@@ -37,7 +37,7 @@ class GetInTouch extends React.Component<{}, {}> {
             <li>
               <p>
                 <span className="fa fa-globe fa-lg">&nbsp;&nbsp;
-                  <a className='LinkA' href="https://xcellencerealty.com/agents/hassam-ameen/" target='_blank'>https://xcellencerealty.com/agents/hassam-ameen/</a>
+                  <a className='LinkA' href="https://xcellencerealty.com/agents/hassam-ameen/" target='_blank'>Corporate Website</a>
                 </span>
               </p>
               <p>
@@ -45,6 +45,9 @@ class GetInTouch extends React.Component<{}, {}> {
                   <a className='LinkA' href="mailto:hfameen@hotmail.com">hfameen@hotmail.com</a>
                 </span>
               </p>
+            </li>
+            <li className="footer-phone">
+              <img src="../XCELLENCE.png" height={85}></img>
             </li>
           </ul>
         </div>

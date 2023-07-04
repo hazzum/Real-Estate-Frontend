@@ -33,7 +33,7 @@ class FooterContainer extends React.Component<{}, {}> {
             {/* <Subscribe>Subscribe to Our Newsletter</Subscribe> */}
         </div>
         <div className="footerCopyRight">
-        Sam Realtors<br/> © {currentYear} Sam Realtors <br/>
+        Sam Realtors | XCELLENCE REALTY<br/> © {currentYear} Sam Realtors | XCELLENCE REALTY<br/>
         </div>
       </div>
     );
