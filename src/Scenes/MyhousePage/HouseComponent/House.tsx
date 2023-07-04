@@ -113,6 +113,8 @@ class House extends React.Component<HouseProps, {}> {
                   <ul>
                     <li><span className="fa fa-search fa-lg" />&nbsp;&nbsp;&nbsp;Listing ID #:<span className="Tab"></span><b>{this.props.data.mlsId}</b></li>
                     <li><span className="fa fa-clock-o fa-lg" />&nbsp;&nbsp;&nbsp;Updated At:<span className="Tab"></span><b>{this.props.data.dateUpdated.toLocaleString()}</b></li>
+                    <li><span className="fa fa-money fa-lg" />&nbsp;&nbsp;Listed Price:<span className="Tab"></span><b>{this.props.data.price}</b></li>
+                    <li><span className="fa fa-money fa-lg" />&nbsp;&nbsp;Price per sqft:<span className="Tab"></span><b>{this.props.data.perSQFT}</b></li>
                     <li><span className="fa fa-globe fa-lg" />&nbsp;&nbsp;&nbsp;Area:<span className="Tab"></span><b>{this.props.data.area}</b></li>
                     <li><span className="fa fa-globe fa-lg" />&nbsp;&nbsp;&nbsp;City:<span className="Tab"></span><b>{this.props.data.city.charAt(0).toUpperCase() + this.props.data.city.slice(1).toLowerCase()}</b></li>
                     <li><span className="fa fa-globe fa-lg" />&nbsp;&nbsp;&nbsp;County:<span className="Tab"></span><b>{this.props.data.county}</b></li>
@@ -134,10 +136,10 @@ class House extends React.Component<HouseProps, {}> {
                   <ul>
                     <li><span className="fa fa-home fa-lg" />&nbsp;&nbsp;&nbsp;Lot Dim.:<span className="Tab"></span><b>{this.props.data.lotDim}</b></li>
                     <li><span className="fa fa-bed fa-lg" />&nbsp;&nbsp;Master Bedroom Dim.:<span className="Tab"></span><b>{this.props.data.Bdroom1}</b></li>
-                    <li><span className="fa fa-bed fa-lg" />&nbsp;&nbsp;Bedroom #2 Dim.:<span className="Tab"></span><b>{this.props.data.Bdroom2}</b></li>
-                    <li><span className="fa fa-bed fa-lg" />&nbsp;&nbsp;Bedroom #3 Dim.:<span className="Tab"></span><b>{this.props.data.Bdroom3}</b></li>
-                    <li><span className="fa fa-bed fa-lg" />&nbsp;&nbsp;Bedroom #4 Dim.:<span className="Tab"></span><b>{this.props.data.Bdroom4}</b></li>
-                    <li><span className="fa fa-bed fa-lg" />&nbsp;&nbsp;Bedroom #5 Dim.:<span className="Tab"></span><b>{this.props.data.Bdroom5}</b></li>
+                    <li style={{display:this.props.data.beds>1?"block":"none"}}><span className="fa fa-bed fa-lg" />&nbsp;&nbsp;Bedroom #2 Dim.:<span className="Tab"></span><b>{this.props.data.Bdroom2}</b></li>
+                    <li style={{display:this.props.data.beds>2?"block":"none"}}><span className="fa fa-bed fa-lg" />&nbsp;&nbsp;Bedroom #3 Dim.:<span className="Tab"></span><b>{this.props.data.Bdroom3}</b></li>
+                    <li style={{display:this.props.data.beds>3?"block":"none"}}><span className="fa fa-bed fa-lg" />&nbsp;&nbsp;Bedroom #4 Dim.:<span className="Tab"></span><b>{this.props.data.Bdroom4}</b></li>
+                    <li style={{display:this.props.data.beds>4?"block":"none"}}><span className="fa fa-bed fa-lg" />&nbsp;&nbsp;Bedroom #5 Dim.:<span className="Tab"></span><b>{this.props.data.Bdroom5}</b></li>
                     <li><span className="fa fa-home fa-lg" />&nbsp;&nbsp;&nbsp;Dining Room Dim.:<span className="Tab"></span><b>{this.props.data.diningDim}</b></li>
                     <li><span className="fa fa-home fa-lg" />&nbsp;&nbsp;&nbsp;Living Room Dim.:<span className="Tab"></span><b>{this.props.data.livingDim}</b></li>
                     <li><span className="fa fa-home fa-lg" />&nbsp;&nbsp;&nbsp;Family Room Dim.:<span className="Tab"></span><b>{this.props.data.familyDim}</b></li>

@@ -17,6 +17,7 @@ export interface listing {
   toilets: number
   square: number
   price: string
+  perSQFT: string
   img: string
   imgs?: string[]
   imgThumb: string
@@ -84,6 +85,7 @@ class MyhousePage extends React.Component<RouteComponentProps<{ id: string }>, L
           imgThumb:'',
           imgsthumb:[],
           price: currency(res.price, { precision: 0 }).format(),
+          perSQFT: currency(res.price/res.sqft).format(),
           status: res.status,
           dateUpdated: new Date(res.updatedAt!),
           mlsId: res.mls_id,
