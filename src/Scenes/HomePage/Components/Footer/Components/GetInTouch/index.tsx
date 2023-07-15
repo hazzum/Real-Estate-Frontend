@@ -22,6 +22,9 @@ class GetInTouch extends React.Component<{}, {}> {
               <a href="https://www.instagram.com/xcellencerealty/" target="_blank" className="btn btn-sm btn-icon btn-round btn-o btn-white">
                 <span className="fa fa-instagram fa-lg" />
               </a>
+              <a href="https://www.youtube.com/channel/UCHhYfrW0W6GHzNdgiEaG2sA/" target="_blank" className="btn btn-sm btn-icon btn-round btn-o btn-white">
+                <span className="fa fa-youtube-play fa-lg" />
+              </a>
             </li>
           </ul>
           <ul className="mainList">

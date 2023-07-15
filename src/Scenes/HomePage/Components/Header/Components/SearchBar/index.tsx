@@ -2,11 +2,12 @@ import * as React from 'react';
 import './style.css';
 import { Icon } from 'react-fa';
 import SelectComponent from 'Components/SelectComponent';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect, Dispatch } from 'react-redux';
 import { getTranslation, SupportedLanguage } from 'Services/Geo';
 import { AreaCode, changeState, CriteriaState, resetState } from 'Redux/Modules/Criteria';
 import { mixed } from 'Models/Unknown';
+import { compose } from 'redux';
 
 const mapStateToProps = (state: any) => ({
   lang: state.status.lang,
@@ -29,6 +30,7 @@ interface SearchBarProps {
   payload: Partial<CriteriaState>;
   changeState: (payload: Partial<CriteriaState>) => void;
   resetState: () => void;
+  history: any
 }
 
 interface SelectBarState {
@@ -56,6 +58,13 @@ class SearchBar extends React.Component<SearchBarProps, SelectBarState> {
       keyword: ''
     };
     this.handleChange = this.handleChange.bind(this)
+  }
+
+  handleKeyPress(e: any) {
+    const { history } = this.props;
+    if(e.charCode==13){
+      history.push(`/search`);
+    }
   }
 
   handleChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -131,7 +140,7 @@ class SearchBar extends React.Component<SearchBarProps, SelectBarState> {
     ];
     return (
       <div className="search-panel">
-        <form className="form-inline" role="form">
+        <form className="form-inline" role="form" onKeyPress={e => this.handleKeyPress(e)}>
           <div className="form-group">
             <input
               type="text"
@@ -210,4 +219,4 @@ class SearchBar extends React.Component<SearchBarProps, SelectBarState> {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
+export default compose(withRouter, connect(mapStateToProps, mapDispatchToProps))(SearchBar);
