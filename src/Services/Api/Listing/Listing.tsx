@@ -1,7 +1,7 @@
 import { CriteriaState } from 'Redux/Modules/Criteria';
 import axios from 'axios';
 
-const apiLink = 'https://sam-realtors-api.onrender.com/'
+const apiLink = 'https://sam-realtors-api.onrender.com'
 
 export async function getListings(criteria: CriteriaState) {
   const crit: string[] = []
